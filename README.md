@@ -1,2 +1,2 @@
-hiring-excercise
+Adbrain job application exercise
 ================
