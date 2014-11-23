@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1003]F:\projects\WebFullStack_VatroslavŠtambuk\WebAPI.Tests\bin\Debug\WebAPI.Tests.dll</TopNode>
+  <SelectedNode>[0-1000]WebAPI.Tests.SportsTests</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1003]F:\projects\WebFullStack_VatroslavŠtambuk\WebAPI.Tests\bin\Debug\WebAPI.Tests.dll" Expanded="true" />
+    <Node UniqueName="[0-1004]WebAPI" Expanded="true" />
+    <Node UniqueName="[0-1005]WebAPI.Tests" Expanded="true" />
+    <Node UniqueName="[0-1000]WebAPI.Tests.SportsTests" Expanded="true" />
+  </Nodes>
+</VisualState>
