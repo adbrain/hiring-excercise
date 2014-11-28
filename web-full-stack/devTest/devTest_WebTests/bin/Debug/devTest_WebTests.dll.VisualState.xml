@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1003]C:\Users\Mariusz\Desktop\devTest\devTest_WebTests\bin\Debug\devTest_WebTests.dll</TopNode>
+  <SelectedNode>[0-1003]C:\Users\Mariusz\Desktop\devTest\devTest_WebTests\bin\Debug\devTest_WebTests.dll</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1003]C:\Users\Mariusz\Desktop\devTest\devTest_WebTests\bin\Debug\devTest_WebTests.dll" Expanded="true" />
+    <Node UniqueName="[0-1004]devTest_Web" Expanded="true" />
+    <Node UniqueName="[0-1005]devTest_Web.API" Expanded="true" />
+    <Node UniqueName="[0-1006]devTest_Web.API.Services" Expanded="true" />
+    <Node UniqueName="[0-1007]devTest_Web.API.Services.Tests" Expanded="true" />
+    <Node UniqueName="[0-1000]devTest_Web.API.Services.Tests.RedditServiceTests" Expanded="true" />
+  </Nodes>
+</VisualState>
