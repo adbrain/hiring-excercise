@@ -190,7 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\DTO\ApiItemModel.cs" />
-    <Compile Include="API\RootController.cs" />
+    <Compile Include="API\SportsController.cs" />
     <Compile Include="API\Interfaces\IApiService.cs" />
     <Compile Include="API\Services\RedditService.cs" />
     <Compile Include="API\Services\ServiceBase.cs" />
@@ -380,11 +380,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>11004</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:11004/</IISUrl>
+          <IISUrl>http://localhost:11004</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
