@@ -1,0 +1,40 @@
+# OASIS_START
+# DO NOT EDIT (digest: d3598b211e83bff9e9ed945df18f6532)
+# Ignore VCS directories, you can use the same kind of rule outside
+# OASIS_START/STOP if you want to exclude directories that contains
+# useless stuff for the build process
+true: annot, bin_annot
+<**/.svn>: -traverse
+<**/.svn>: not_hygienic
+".bzr": -traverse
+".bzr": not_hygienic
+".hg": -traverse
+".hg": not_hygienic
+".git": -traverse
+".git": not_hygienic
+"_darcs": -traverse
+"_darcs": not_hygienic
+# Library ttrav
+"src/ttrav.cmxs": use_ttrav
+# Executable ttrav
+<bin/ttrav.{native,byte}>: pkg_cohttp
+<bin/ttrav.{native,byte}>: pkg_cohttp.lwt
+<bin/ttrav.{native,byte}>: pkg_conduit
+<bin/ttrav.{native,byte}>: pkg_conduit.lwt
+<bin/ttrav.{native,byte}>: pkg_ezjsonm
+<bin/ttrav.{native,byte}>: pkg_ezjsonm.lwt
+<bin/ttrav.{native,byte}>: pkg_lwt
+<bin/ttrav.{native,byte}>: pkg_lwt.unix
+<bin/ttrav.{native,byte}>: pkg_unix
+<bin/ttrav.{native,byte}>: use_ttrav
+<bin/*.ml{,i,y}>: pkg_cohttp
+<bin/*.ml{,i,y}>: pkg_cohttp.lwt
+<bin/*.ml{,i,y}>: pkg_conduit
+<bin/*.ml{,i,y}>: pkg_conduit.lwt
+<bin/*.ml{,i,y}>: pkg_ezjsonm
+<bin/*.ml{,i,y}>: pkg_ezjsonm.lwt
+<bin/*.ml{,i,y}>: pkg_lwt
+<bin/*.ml{,i,y}>: pkg_lwt.unix
+<bin/*.ml{,i,y}>: pkg_unix
+<bin/*.ml{,i,y}>: use_ttrav
+# OASIS_STOP
