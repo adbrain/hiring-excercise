@@ -1,0 +1,20 @@
+
+Simple OCaml http service built with Cohttp.
+
+Provides API for inserting and querying data from binary tree. Binary tree stored in-memory
+and implemented as purely-functional persistent AVL tree. AVL tree has self-balancing property,
+so it's quite useful.
+
+Tree is persisted on disk for simplicity, but that's not very hard with some serialisation tools.
+There is no need for database, because we use OCaml's ADTs to repersent tree and we lose this
+properties in database. Moreover, when using database we can just store records in plain table and
+let database use search tree underneath, as index. If we, however, inclined to store records in
+database in hierarchical from, it's more SQL friendly to use nested sets to represent trees, then
+adjacency lists, because it doesn't require recursion.
+
+Implementation of AVL tree resides in src/AVLTree.{mli,ml}.
+Service implementation is in bin/ttrav.ml. After compilation, one may run service as ./ttrav.native.
+Service will be listening on 127.0.0.1:31337. Host and port are hardcoded in bin/ttrav.ml for simplicity.
+
+OCaml 4.03.0+trunk was used to produce this code.
+Code depends on: Lwt, Cohttp, Ezjsonm.

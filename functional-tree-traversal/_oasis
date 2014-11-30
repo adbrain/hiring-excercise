@@ -1,0 +1,21 @@
+OASISFormat: 0.4
+Name:        ttrav
+Version:     0.0.1
+Synopsis:    http api for binary tree
+Authors:     Roma Sokolov
+License:     MIT
+Plugins:     DevFiles (0.4)
+BuildTools: ocamlbuild
+
+Library "ttrav"
+  Path: src
+  Install: false
+  Modules: AVLTree
+  Findlibname: ttrav
+
+Executable ttrav
+  Path:       bin
+  Install:    false
+  MainIs:     ttrav.ml
+  CompiledObject: best
+  BuildDepends: unix, lwt.unix, conduit, conduit.lwt, lwt, cohttp, cohttp.lwt, cohttp.lwt, ezjsonm, ezjsonm.lwt, ttrav
