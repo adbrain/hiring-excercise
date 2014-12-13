@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
 
-namespace WebApi
+namespace Adbrain.WebApi
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
