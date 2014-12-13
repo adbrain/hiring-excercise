@@ -15,6 +15,9 @@ namespace Adbrain.DataAccess.DbContexts
     {
         public SqlDbContext() : base("SqlDbContext")
         {
+            Database.SetInitializer<SqlDbContext>(new CreateDatabaseIfNotExists<SqlDbContext>());
+            //Database.SetInitializer<SqlDbContext>(new DropCreateDatabaseIfModelChanges<SqlDbContext>());
+            //Database.SetInitializer<SqlDbContext>(new DropCreateDatabaseAlways<SqlDbContext>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
