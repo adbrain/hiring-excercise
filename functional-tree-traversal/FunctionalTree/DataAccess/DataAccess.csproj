@@ -50,6 +50,8 @@
     <Compile Include="DbContexts\SqlDbContext.cs" />
     <Compile Include="Entities\PersonNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IPersonNodeRepository.cs" />
+    <Compile Include="Repositories\PersonNodeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
