@@ -38,18 +38,17 @@ namespace Adbrain.WebApi.Models.Services
             {
                 // I traverse the tree to find the node that will become 
                 // the direct parent of the new node.
-                var currentNode = new PersonNode { LeftChild = _repository.GetHead() };
-                bool goLeft = true;
-                while ((goLeft && currentNode.LeftChild != null) ||
-                       (!goLeft && currentNode.RightChild != null))
+                var currentNode = _repository.GetHead();
+                bool goLeft = person.Age <= currentNode.Age;
+                while ( (goLeft && currentNode.LeftChildId.HasValue) ||
+                        (!goLeft && currentNode.RightChildId.HasValue) )
                 {
                     currentNode = goLeft ? currentNode.LeftChild : currentNode.RightChild;
                     goLeft = person.Age <= currentNode.Age;
                 }
 
+                // I add the new node and attach it to its parent. 
                 _repository.Add(person);
-                
-                // I attach the new node to its parent. 
                 if (goLeft)
                 {
                     currentNode.LeftChild = person;
@@ -58,10 +57,7 @@ namespace Adbrain.WebApi.Models.Services
                 {
                     currentNode.RightChild = person;
                 }
-
-                _dbContext.Save();
             }
-
 
             _dbContext.Save();
         }
