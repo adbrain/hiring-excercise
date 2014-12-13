@@ -10,6 +10,9 @@ namespace Adbrain.WebApi.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Ninject.Modules;
+    using System.Collections.Generic;
+    using Adbrain.WebApi.App_Start.DependencyInjection;
 
     public static class NinjectWebCommon 
     {
@@ -61,6 +64,13 @@ namespace Adbrain.WebApi.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            var modules = new List<INinjectModule>
+            {
+                new DataAccessModule(),
+                new WebApiModule()
+            };
+
+            kernel.Load(modules);
         }        
     }
 }
