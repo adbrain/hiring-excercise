@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{925EF463
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "UnitTests.FSharp", "UnitTests.FSharp\UnitTests.FSharp.fsproj", "{97EE18F1-012A-4E98-A1FC-A5FE3B18BF60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.CSharp", "UnitTests.CSharp\UnitTests.CSharp.csproj", "{11CD8DE3-78A1-4270-8C09-B3482179DC50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,11 +35,16 @@ Global
 		{97EE18F1-012A-4E98-A1FC-A5FE3B18BF60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97EE18F1-012A-4E98-A1FC-A5FE3B18BF60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97EE18F1-012A-4E98-A1FC-A5FE3B18BF60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11CD8DE3-78A1-4270-8C09-B3482179DC50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11CD8DE3-78A1-4270-8C09-B3482179DC50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11CD8DE3-78A1-4270-8C09-B3482179DC50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11CD8DE3-78A1-4270-8C09-B3482179DC50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{97EE18F1-012A-4E98-A1FC-A5FE3B18BF60} = {925EF463-A330-4BD8-BBE6-F8EB78057465}
+		{11CD8DE3-78A1-4270-8C09-B3482179DC50} = {925EF463-A330-4BD8-BBE6-F8EB78057465}
 	EndGlobalSection
 EndGlobal
