@@ -14,7 +14,7 @@ namespace Adbrain.IntegrationTests
         private TransactionScope _transactionScope;
 
         [TestFixtureSetUp]
-        public void TestFixtureSetUp()
+        public void CreateDatabaseIfNotExists()
         {
             using (var dbContext = new SqlDbContext())
             {
@@ -23,7 +23,7 @@ namespace Adbrain.IntegrationTests
         }
 
         [SetUp]
-        public void SetUp()
+        public void StartTransaction()
         {
             // I wrap each test in a transaction so that they don't leave
             // any state in the database that can influence other tests.
@@ -31,7 +31,7 @@ namespace Adbrain.IntegrationTests
         }
 
         [TearDown]
-        public void TearDown()
+        public void DisposeTransaction()
         {
             _transactionScope.Dispose();
             _transactionScope = null;
