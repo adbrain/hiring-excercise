@@ -1,6 +1,8 @@
 ﻿using Adbrain.DataAccess.DbContexts;
 using Adbrain.DataAccess.Entities;
 using Adbrain.DataAccess.Repositories;
+using Adbrain.FunctionalTree.Engine;
+using Adbrain.WebApi.Models.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +62,15 @@ namespace Adbrain.WebApi.Models.Services
             }
 
             _dbContext.Save();
+        }
+
+        public Person Find(string name, int age)
+        {
+            var head = _repository.GetHead();
+            var personNode = PersonTree.Find(name, age, head);
+            if (personNode == null)
+                return null;
+            return new Person(personNode);
         }
     }
 }

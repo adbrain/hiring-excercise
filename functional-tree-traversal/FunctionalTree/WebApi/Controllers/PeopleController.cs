@@ -18,9 +18,15 @@ namespace Adbrain.WebApi.Controllers
         }
 
         // GET api/people
-        public string Get(string name, int age)
+        public HttpResponseMessage Get(string name, int age)
         {
-            throw new NotImplementedException();
+            var person = _service.Find(name, age);
+            if (person != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, person);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.NotFound);
         }
 
         // POST api/people

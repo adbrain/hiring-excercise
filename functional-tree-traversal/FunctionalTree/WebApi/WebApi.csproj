@@ -111,6 +111,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Json\Person.cs" />
     <Compile Include="Models\Services\IPersonService.cs" />
     <Compile Include="Models\Services\PersonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
