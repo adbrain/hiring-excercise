@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{BF335C33-3281-4DD6-9673-7BCD04BDE7CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{E18AF15B-3624-4435-86AD-F2D909798102}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{BF335C33-3281-4DD6-9673-7BCD04BDE7CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF335C33-3281-4DD6-9673-7BCD04BDE7CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF335C33-3281-4DD6-9673-7BCD04BDE7CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E18AF15B-3624-4435-86AD-F2D909798102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E18AF15B-3624-4435-86AD-F2D909798102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E18AF15B-3624-4435-86AD-F2D909798102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E18AF15B-3624-4435-86AD-F2D909798102}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
