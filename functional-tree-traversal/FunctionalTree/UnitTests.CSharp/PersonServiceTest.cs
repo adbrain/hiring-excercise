@@ -19,8 +19,8 @@ namespace Adbrain.UnitTests.CSharp
         private Mock<ISqlDbContext> _mockSqlDbContext;
         private Mock<IPersonNodeRepository> _mockPersonNodeRepository;
 
-        [SetUp]
-        public void TestSetUp()
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
         {
             _mockSqlDbContext = new Mock<ISqlDbContext>();
             _mockPersonNodeRepository = new Mock<IPersonNodeRepository>();

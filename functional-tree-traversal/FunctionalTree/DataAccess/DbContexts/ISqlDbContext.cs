@@ -9,6 +9,8 @@ namespace Adbrain.DataAccess.DbContexts
 {
     public interface ISqlDbContext
     {
+        Database Database { get; }
+
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
         int Save();

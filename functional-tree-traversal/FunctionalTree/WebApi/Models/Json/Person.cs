@@ -8,6 +8,8 @@ namespace Adbrain.WebApi.Models.Json
 {
     public class Person
     {
+        public Person() { }
+
         public Person(PersonNode node)
         {
             Name = node.Name;
