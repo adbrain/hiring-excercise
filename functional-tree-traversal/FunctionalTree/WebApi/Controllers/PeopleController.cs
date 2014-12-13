@@ -17,16 +17,18 @@ namespace Adbrain.WebApi.Controllers
             _service = service;
         }
 
-        // GET api/people/5
+        // GET api/people
         public string Get(string name, int age)
         {
             throw new NotImplementedException();
         }
 
         // POST api/people
-        public void Post(string name, int age)
+        public HttpResponseMessage Post(string name, int age)
         {
-            throw new NotImplementedException();
+            _service.Insert(name, age);
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            return response;
         }
     }
 }

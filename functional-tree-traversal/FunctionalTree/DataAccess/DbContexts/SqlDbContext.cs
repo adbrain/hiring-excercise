@@ -25,6 +25,14 @@ namespace Adbrain.DataAccess.DbContexts
             modelBuilder.Entity<PersonNode>()
                 .Property(p => p.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<PersonNode>()
+                .HasOptional(p => p.LeftChild)
+                .WithMany()
+                .HasForeignKey(p => p.LeftChildId);
+            modelBuilder.Entity<PersonNode>()
+                .HasOptional(p => p.RightChild)
+                .WithMany()
+                .HasForeignKey(p => p.RightChildId);
         }
 
         public int Save()

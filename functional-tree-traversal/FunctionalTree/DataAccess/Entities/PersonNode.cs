@@ -10,24 +10,21 @@ namespace Adbrain.DataAccess.Entities
 {
     public class PersonNode
     {
-        [Key]
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
-        public int Age { get; set; }
+        public virtual int Age { get; set; }
 
-        public int? LeftChildId { get; set; }
+        public virtual int? LeftChildId { get; set; }
 
-        public int? RightChildId { get; set; }
+        public virtual int? RightChildId { get; set; }
 
-        [ForeignKey("LeftChildId")]
-        public PersonNode LeftChild { get; set; }
+        public virtual PersonNode LeftChild { get; set; }
 
-        [ForeignKey("RightChildId")]
-        public PersonNode RightChild { get; set; }
+        public virtual PersonNode RightChild { get; set; }
 
         [Timestamp]
-        public Byte[] Timestamp { get; set; } 
+        public virtual Byte[] Timestamp { get; set; } 
     }
 }
