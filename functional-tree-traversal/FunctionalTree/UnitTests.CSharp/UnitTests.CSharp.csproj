@@ -49,6 +49,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{e18af15b-3624-4435-86ad-f2d909798102}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebApi\WebApi.csproj">
       <Project>{bf335c33-3281-4dd6-9673-7bcd04bde7ca}</Project>
       <Name>WebApi</Name>
