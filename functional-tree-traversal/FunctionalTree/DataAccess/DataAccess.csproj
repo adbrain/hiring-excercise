@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbContexts\ISqlDbContext.cs" />
+    <Compile Include="DbContexts\SqlDbContext.cs" />
     <Compile Include="Entities\PersonNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
