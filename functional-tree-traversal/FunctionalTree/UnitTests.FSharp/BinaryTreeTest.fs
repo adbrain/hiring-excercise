@@ -53,7 +53,9 @@ module BinaryTreeTest =
         [<Test>] member test.
          ``on a tree with single node finds the node if it has same name`` () =
             BinaryTree.find specs x1 x1
-            |> should equal <| Some(x1)
+            |> Option.get
+            |> specs.IsEqual x1
+            |> should be True
 
         [<Test>] member test.
          ``on a tree with single node returns None if the name is different`` () =
@@ -68,32 +70,44 @@ module BinaryTreeTest =
         [<Test>] member test.
          `` returns the correct node when there are duplicate keys`` () =
             BinaryTree.find specs x1' tree
-            |> should equal <| Some(x1')
+            |> Option.get
+            |> specs.IsEqual x1'
+            |> should be True
 
         [<Test>] member test.
          `` returns the correct node when looking for node 0`` () =
             BinaryTree.find specs x0 tree
-            |> should equal <| Some(x0)
+            |> Option.get
+            |> specs.IsEqual x0
+            |> should be True
 
         [<Test>] member test.
          `` returns the correct node when looking for node 1`` () =
             BinaryTree.find specs x1 tree
-            |> should equal <| Some(x1)
+            |> Option.get
+            |> specs.IsEqual x1
+            |> should be True
 
         [<Test>] member test.
          `` returns the correct node when looking for node 2`` () =
             BinaryTree.find specs x2 tree
-            |> should equal <| Some(x2)
+            |> Option.get
+            |> specs.IsEqual x2
+            |> should be True
 
         [<Test>] member test.
          `` returns the correct node when looking for node 3`` () =
             BinaryTree.find specs x3 tree
-            |> should equal <| Some(x3)
+            |> Option.get
+            |> specs.IsEqual x3
+            |> should be True
 
         [<Test>] member test.
          `` returns the correct node when looking for node 4`` () =
             BinaryTree.find specs x4 tree
-            |> should equal <| Some(x4)
+            |> Option.get
+            |> specs.IsEqual x4
+            |> should be True
 
         [<Test>] member test.
          `` returns None when looking for node 5`` () =

@@ -18,6 +18,8 @@ namespace Adbrain.IntegrationTests
         {
             using (var dbContext = new SqlDbContext())
             {
+                // Todo: We need to detect if the model has changed and 
+                //       drop the old database if it did.
                 dbContext.Database.CreateIfNotExists();
             }
         }
