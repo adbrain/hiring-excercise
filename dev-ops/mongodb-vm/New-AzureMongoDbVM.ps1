@@ -40,8 +40,6 @@ Param(
     [string]$VMPassword,
     
     [string]$VMServiceName)
-
-$VerbosePreference = "Continue"
     
 # Check if Windows Azure PowerShell is available.
 if ((Get-Module -ListAvailable Azure) -eq $null) 
@@ -51,7 +49,7 @@ if ((Get-Module -ListAvailable Azure) -eq $null)
 
 # Set service name if one was not provided.
 if ($VMServiceName -ne $null) { $VMServiceName = "${VMName}-Service" }
-Write-Verbose "Service name to be used is '$VMServiceName'."
+Write-Host "Service name to be used is '$VMServiceName'."
 
 Set-AzureSubscription -SubscriptionName $SubscriptionName
 
@@ -63,28 +61,30 @@ if($AffinityGroup -eq $null)
 }
 
 $Location = $AffinityGroup.Location
-
-Write-Verbose "Location is '$Location'"
+Write-Host "Location is '$Location'"
 
 # Create storage account if it does not already exist. 
 $storage = Get-AzureStorageAccount | Where-Object { $_.StorageAccountName -eq $StorageAccountName } 
 if($storage -eq $null)  
 { 
-    Write-Verbose "Storage account '$StorageAccountName' does not exist. Creating storage account." 
+    Write-Host "Storage account '$StorageAccountName' does not exist. Creating storage account." 
     New-AzureStorageAccount -StorageAccountName $StorageAccountName -AffinityGroup $AffinityGroupName
 } 
 
 # Set current storage account.
 Set-AzureSubscription -SubscriptionName $SubscriptionName -CurrentStorageAccount $StorageAccountName
 
-# Create a container to upload the scripts.
+# Create a container to upload the setup script.
+$SetupScript = "setup-docker-mongodb.sh"
 $guid = [guid]::NewGuid()
-$TmpStorageContainerName = "tmp-$guid"
-New-AzureStorageContainer -Name $TmpStorageContainerName
-
-Set-AzureStorageBlobContent -Container $TmpStorageContainerName `
-                            -File .\setup-docker-mongodb.sh `
-                            -Blob setup
+$TmpContainerName = "tmp-$guid"
+$Blob = "setup"
+New-AzureStorageContainer -Name $TmpContainerName
+Write-Host "Creating storage container '$TmpContainerName' and uploading script $SetupScript in blob '$Blob'."
+# Upload setup script.
+Set-AzureStorageBlobContent -Container $TmpContainerName `
+                            -File .\$SetupScript `
+                            -Blob $Blob
 
 $VMImageLabel = "Ubuntu Server 14.04 LTS"
 # Find the latest image in the specific location
@@ -92,12 +92,12 @@ $VMImageName = @(Get-AzureVMImage `
                  | Where-Object -Property Label -Match $VMImageLabel `
                  | Where-Object -Property Location -Match $Location `
                  | Sort-Object PublishedDate -descending).ImageName[0]
-Write-Verbose "Image to be used: '$VMImageName'"
+Write-Host "Image to be used: '$VMImageName'"
 
 $VMInstanceSize = "Small" # Small is A0
-Write-Verbose "Instance size to be used: '$VMInstanceSize'"
+Write-Host "Instance size to be used: '$VMInstanceSize'"
 
-Write-Verbose "Creating virtual machine: '$VMName'"
+Write-Host "Creating virtual machine: '$VMName'"
 $vm = New-AzureQuickVM –Linux `
                        -ImageName $VMImageName `
                        -Name $VMName `
@@ -109,13 +109,24 @@ $vm = New-AzureQuickVM –Linux `
 
 # Configure the virtual machine if it was successfully created.
 if ($vm -ne $null) {             
-    Write-Verbose "Creating endpoint for MongoDB"
-
+    $MongoDBPort = 27017
+    Write-Host "Creating endpoint for MongoDB on tcp port $MongoDBPort"
+	# Expose endpoint for MongoDB on tcp port 27017
     Get-AzureVM -Name $VMName `
                 -ServiceName $VMServiceName `
     | Add-AzureEndpoint -Name "MongoDB"  `
                         -Protocol "tcp" `
-                        -PublicPort 27017 `
-                        -LocalPort 27017 `
+                        -PublicPort $MongoDBPort `
+                        -LocalPort $MongoDBPort `
     | Update-AzureVM
+	
+	Write-Host "Running script $SetupScript on new VM."
+	# Run setup script
+	Get-AzureVM -Name $VMName `
+                -ServiceName $VMServiceName `
+	| Set-AzureVMCustomScriptExtension -StorageAccountName $StorageAccountName `
+	                                   -ContainerName $TmpContainerName `
+									   -FileName $SetupScript `
+									   -Run $SetupScript `
+	| Update-AzureVM
 }
