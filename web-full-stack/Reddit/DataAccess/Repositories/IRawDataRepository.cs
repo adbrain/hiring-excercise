@@ -1,11 +1,11 @@
-﻿using Adbrain.DataAccess.Entities;
+﻿using Adbrain.Reddit.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adbrain.DataAccess.Repositories
+namespace Adbrain.Reddit.DataAccess.Repositories
 {
     public interface IRawDataRepository
     {

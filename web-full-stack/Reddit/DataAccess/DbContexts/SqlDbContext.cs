@@ -1,4 +1,4 @@
-﻿using Adbrain.DataAccess.Entities;
+﻿using Adbrain.Reddit.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adbrain.DataAccess.DbContexts
+namespace Adbrain.Reddit.DataAccess.DbContexts
 {
     public class SqlDbContext : DbContext, ISqlDbContext
     {

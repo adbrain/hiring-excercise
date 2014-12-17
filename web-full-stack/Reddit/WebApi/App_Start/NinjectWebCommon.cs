@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Adbrain.WebApi.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Adbrain.WebApi.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Adbrain.Reddit.WebApi.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Adbrain.Reddit.WebApi.App_Start.NinjectWebCommon), "Stop")]
 
-namespace Adbrain.WebApi.App_Start
+namespace Adbrain.Reddit.WebApi.App_Start
 {
     using System;
     using System.Web;
@@ -10,7 +10,7 @@ namespace Adbrain.WebApi.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Adbrain.WebApi.App_Start.DependencyInjection;
+    using Adbrain.Reddit.WebApi.App_Start.DependencyInjection;
     using System.Collections.Generic;
     using Ninject.Modules;
 

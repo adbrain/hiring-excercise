@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adbrain.DataAccess.DbContexts
+namespace Adbrain.Reddit.DataAccess.DbContexts
 {
     public interface ISqlDbContext
     {

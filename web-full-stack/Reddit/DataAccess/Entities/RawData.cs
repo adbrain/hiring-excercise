@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adbrain.DataAccess.Entities
+namespace Adbrain.Reddit.DataAccess.Entities
 {
     public class RawData
     {

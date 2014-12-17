@@ -1,6 +1,6 @@
-﻿using Adbrain.DataAccess.DbContexts;
-using Adbrain.DataAccess.Repositories;
-using Adbrain.DataAccess.Wrappers;
+﻿using Adbrain.Reddit.DataAccess.DbContexts;
+using Adbrain.Reddit.DataAccess.Repositories;
+using Adbrain.Reddit.DataAccess.Wrappers;
 using Ninject.Modules;
 using Ninject.Web.Common;
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Adbrain.WebApi.App_Start.DependencyInjection
+namespace Adbrain.Reddit.WebApi.App_Start.DependencyInjection
 {
     public class DataAccessModule : NinjectModule
     {

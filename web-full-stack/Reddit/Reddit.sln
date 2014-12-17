@@ -5,6 +5,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{D23AB34C-1584-4218-9580-540B0DE95385}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0D7B1981-81BB-41B6-A7B2-DFC4F6A17580}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{4E8F5F79-3940-4BD8-B413-0EE23D578197}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{EBD5A454-8438-4805-82A6-213C898F3DA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,8 +25,20 @@ Global
 		{D23AB34C-1584-4218-9580-540B0DE95385}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D23AB34C-1584-4218-9580-540B0DE95385}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D23AB34C-1584-4218-9580-540B0DE95385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E8F5F79-3940-4BD8-B413-0EE23D578197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E8F5F79-3940-4BD8-B413-0EE23D578197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E8F5F79-3940-4BD8-B413-0EE23D578197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E8F5F79-3940-4BD8-B413-0EE23D578197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBD5A454-8438-4805-82A6-213C898F3DA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBD5A454-8438-4805-82A6-213C898F3DA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBD5A454-8438-4805-82A6-213C898F3DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD5A454-8438-4805-82A6-213C898F3DA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E8F5F79-3940-4BD8-B413-0EE23D578197} = {0D7B1981-81BB-41B6-A7B2-DFC4F6A17580}
+		{EBD5A454-8438-4805-82A6-213C898F3DA3} = {0D7B1981-81BB-41B6-A7B2-DFC4F6A17580}
 	EndGlobalSection
 EndGlobal

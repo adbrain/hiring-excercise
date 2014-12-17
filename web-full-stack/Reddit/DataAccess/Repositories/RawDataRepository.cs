@@ -1,6 +1,6 @@
-﻿using Adbrain.DataAccess.DbContexts;
-using Adbrain.DataAccess.Entities;
-using Adbrain.DataAccess.Wrappers;
+﻿using Adbrain.Reddit.DataAccess.DbContexts;
+using Adbrain.Reddit.DataAccess.Entities;
+using Adbrain.Reddit.DataAccess.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adbrain.DataAccess.Repositories
+namespace Adbrain.Reddit.DataAccess.Repositories
 {
     public class RawDataRepository : IRawDataRepository
     {

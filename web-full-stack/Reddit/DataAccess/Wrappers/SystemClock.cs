@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adbrain.DataAccess.Wrappers
+namespace Adbrain.Reddit.DataAccess.Wrappers
 {
     public class SystemClock : IClock
     {
