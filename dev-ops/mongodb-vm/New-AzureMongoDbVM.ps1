@@ -47,10 +47,6 @@ if ((Get-Module -ListAvailable Azure) -eq $null)
     throw "Windows Azure PowerShell not found! Please install Windows PowerShell command-line tools from http://www.windowsazure.com/en-us/downloads/"
 } 
 
-# Set service name if one was not provided.
-if ($VMServiceName -ne $null) { $VMServiceName = "${VMName}-Service" }
-Write-Host "Service name to be used is '$VMServiceName'."
-
 Set-AzureSubscription -SubscriptionName $SubscriptionName
 
 # Check Affinity Group exists.
@@ -78,13 +74,13 @@ Set-AzureSubscription -SubscriptionName $SubscriptionName -CurrentStorageAccount
 $SetupScript = "setup-docker-mongodb.sh"
 $guid = [guid]::NewGuid()
 $TmpContainerName = "tmp-$guid"
-$Blob = "setup"
-New-AzureStorageContainer -Name $TmpContainerName
-Write-Host "Creating storage container '$TmpContainerName' and uploading script $SetupScript in blob '$Blob'."
+$BlobName = $SetupScript
+New-AzureStorageContainer -Name $TmpContainerName -Permission Blob
+Write-Host "Creating storage container '$TmpContainerName' and uploading script $SetupScript in blob '$BlobName'."
 # Upload setup script.
 Set-AzureStorageBlobContent -Container $TmpContainerName `
                             -File .\$SetupScript `
-                            -Blob $Blob
+                            -Blob $BlobName
 
 $VMImageLabel = "Ubuntu Server 14.04 LTS"
 # Find the latest image in the specific location
@@ -97,36 +93,61 @@ Write-Host "Image to be used: '$VMImageName'"
 $VMInstanceSize = "Small" # Small is A0
 Write-Host "Instance size to be used: '$VMInstanceSize'"
 
-Write-Host "Creating virtual machine: '$VMName'"
-$vm = New-AzureQuickVM –Linux `
-                       -ImageName $VMImageName `
-                       -Name $VMName `
-                       -ServiceName $VMServiceName `
-                       -AffinityGroup $AffinityGroupName `
-                       -InstanceSize $VMInstanceSize `
-                       –LinuxUser $VMUser `
-                       -Password $VMPassword
+# Set service name if one was not provided.
+if ($VMServiceName -ne $null) { $VMServiceName = "${VMName}-Service" }
+Write-Host "Service name to be used is '$VMServiceName'."
 
+Write-Host "Creating virtual machine: '$VMName'"
+New-AzureQuickVM –Linux `
+                 -ImageName $VMImageName `
+                 -Name $VMName `
+                 -ServiceName $VMServiceName `
+                 -AffinityGroup $AffinityGroupName `
+                 -InstanceSize $VMInstanceSize `
+                 –LinuxUser $VMUser `
+                 -Password $VMPassword
+
+$vm = Get-AzureVM -Name $VMName -ServiceName $VMServiceName
+                       
 # Configure the virtual machine if it was successfully created.
 if ($vm -ne $null) {             
+    Write-Host "Running script $SetupScript on new VM."
+    #
+    # To see the log of running the script, ssh to the server and see log here:
+    # /var/log/azure/Microsoft.OSTCExtensions.CustomScriptForLinux/1.1/extension.log
+    #
+    
+    $blobUri = "https://$StorageAccountName.blob.core.windows.net/$TmpContainerName/$BlobName"
+    Write-Host "Blob Uri is $blobUri"
+    
+    $PublicConfiguration = '{"fileUris":["' + $blobUri + '"], "commandToExecute": "bash ' + $SetupScript + '" }'
+        
+    Write-Host "Public configuration to be used:"
+    Write-Host "$PublicConfiguration"
+    $CustomExtensionName = "CustomScriptForLinux"
+    $CustomExtensionPublisher = "Microsoft.OSTCExtensions"
+    $CustomExtensionVersion = "1.1"
+    # Run setup script
+    $vm | Set-AzureVMExtension -ExtensionName $CustomExtensionName `
+                               -Publisher $CustomExtensionPublisher `
+                               -Version $CustomExtensionVersion `
+                               -PublicConfiguration $PublicConfiguration `
+        | Update-AzureVM
+		
     $MongoDBPort = 27017
     Write-Host "Creating endpoint for MongoDB on tcp port $MongoDBPort"
-	# Expose endpoint for MongoDB on tcp port 27017
-    Get-AzureVM -Name $VMName `
-                -ServiceName $VMServiceName `
-    | Add-AzureEndpoint -Name "MongoDB"  `
-                        -Protocol "tcp" `
-                        -PublicPort $MongoDBPort `
-                        -LocalPort $MongoDBPort `
-    | Update-AzureVM
-	
-	Write-Host "Running script $SetupScript on new VM."
-	# Run setup script
-	Get-AzureVM -Name $VMName `
-                -ServiceName $VMServiceName `
-	| Set-AzureVMCustomScriptExtension -StorageAccountName $StorageAccountName `
-	                                   -ContainerName $TmpContainerName `
-									   -FileName $SetupScript `
-									   -Run $SetupScript `
-	| Update-AzureVM
+    # Expose endpoint for MongoDB on tcp port 27017
+    $vm | Add-AzureEndpoint -Name "MongoDB"  `
+                            -Protocol "tcp" `
+                            -PublicPort $MongoDBPort `
+                            -LocalPort $MongoDBPort `
+        | Update-AzureVM
 }
+
+# Delete temporary storage container
+# Todo: Find a way to wait until the custom script has finished and then remove the temporary container.
+#Write-Host "Deleting temporary storage container '$TmpContainerName'"
+#Remove-AzureStorageContainer -Name $TmpContainerName -Force
+
+Write-Host "Once the docker container is set up, you can test that the mongodb is live by accessing on your browser:"
+Write-Host "$VMServiceName.cloudapp.net:$MongoDBPort" 
