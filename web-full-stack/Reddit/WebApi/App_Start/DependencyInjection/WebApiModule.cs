@@ -1,4 +1,5 @@
-﻿using Adbrain.Reddit.WebApi.Models.Wrappers;
+﻿using Adbrain.Reddit.WebApi.Models.Services;
+using Adbrain.Reddit.WebApi.Models.Wrappers;
 using Ninject.Modules;
 using Ninject.Web.Common;
 using System;
@@ -13,6 +14,7 @@ namespace Adbrain.Reddit.WebApi.App_Start.DependencyInjection
         public override void Load()
         {
             Bind<IWebClientWrapper>().To<WebClientWrapper>().InTransientScope();
+            Bind<IRedditSportsService>().To<RedditSportsService>().InTransientScope();
         }
     }
 }
