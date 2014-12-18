@@ -1,5 +1,4 @@
 ﻿using Adbrain.Reddit.WebApi.Models.Wrappers;
-using Ninject.Extensions.Factory;
 using Ninject.Modules;
 using Ninject.Web.Common;
 using System;
@@ -14,7 +13,6 @@ namespace Adbrain.Reddit.WebApi.App_Start.DependencyInjection
         public override void Load()
         {
             Bind<IWebClientWrapper>().To<WebClientWrapper>().InTransientScope();
-            Bind<IWebClientFactory>().ToFactory();
         }
     }
 }

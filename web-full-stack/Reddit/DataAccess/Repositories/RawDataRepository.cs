@@ -20,6 +20,7 @@ namespace Adbrain.Reddit.DataAccess.Repositories
             IClock clock,
             ISqlDbContext dbContext)
         {
+            _clock = clock;
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<RawData>();
         }
