@@ -57,15 +57,21 @@ namespace Adbrain.IntegrationTests
         }
 
         [Test]
-        public void InsertThousandPeopleAndQueryExistingNonExistingPerson()
+        public void InsertAThousandPeopleAndQueryExistingAndNonExistingPerson()
         {
             // Arrange
-            var allPeople = Enumerable.Range(1, 1001).Select(i => new Person { Name = i.ToString(), Age = i }).ToList();
-            var missingPerson = allPeople.Single(x => x.Age == 501);
-            var peopleToInsert = allPeople.Where(x => x.Age != missingPerson.Age).ToList();
-            var existingPerson = peopleToInsert.Single(x => x.Age == 500);
-            peopleToInsert.ForEach(p => _personService.Insert(p.Name, p.Age));
+            var allPeople = Enumerable.Range(1, 1002).Select(i => new Person { Name = i.ToString(), Age = i }).ToList();
+            var missingPerson = allPeople.Single(x => x.Age == 400);
+            var existingPerson = allPeople.Single(x => x.Age == 600);
+            var peopleToInsert = allPeople.Where(x => x.Age != missingPerson.Age && x.Age != existingPerson.Age).ToList();
             
+            var randomSeed = 9797;
+            var random = new Random(randomSeed);
+            // I insert people in a random order so that the tree is more balanced.
+            Randomize(peopleToInsert, random).ForEach(p => _personService.Insert(p.Name, p.Age));
+            // I insert the person I will look up last
+            _personService.Insert(existingPerson.Name, existingPerson.Age);
+
             // Act
             var missingPersonQueryResult = _personService.Find(missingPerson.Name, missingPerson.Age);
             var existingPersonQueryResult = _personService.Find(existingPerson.Name, existingPerson.Age);
@@ -77,6 +83,15 @@ namespace Adbrain.IntegrationTests
                 "Name of existing person returned is not the expected.");
             Assert.AreEqual(existingPerson.Age, existingPersonQueryResult.Age,
                 "Age of existing person returned is not the expected.");
+        }
+
+        private List<Person> Randomize(List<Person> people, Random random)
+        {
+            return people
+                .Select(x => new { P = x, R = random.Next() })
+                .OrderBy(x => x.R)
+                .Select(x => x.P)
+                .ToList();
         }
     }
 }
