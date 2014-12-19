@@ -4,6 +4,8 @@ using Ninject.Modules;
 using Ninject.Web.Common;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 
@@ -13,6 +15,10 @@ namespace Adbrain.Reddit.WebApi.App_Start.DependencyInjection
     {
         public override void Load()
         {
+            Bind<NameValueCollection>().ToConstant(ConfigurationManager.AppSettings)
+                .WhenInjectedExactlyInto<AppSettingsHelper>();
+            Bind<IAppSettingsHelper>().To<AppSettingsHelper>().InSingletonScope();
+
             Bind<IWebClientWrapper>().To<WebClientWrapper>().InTransientScope();
             Bind<IRedditSportsService>().To<RedditSportsService>().InTransientScope();
         }

@@ -113,6 +113,8 @@
     </Compile>
     <Compile Include="Models\Services\IRedditSportsService.cs" />
     <Compile Include="Models\Services\RedditSportsService.cs" />
+    <Compile Include="Models\Helpers\AppSettingsHelper.cs" />
+    <Compile Include="Models\Helpers\IAppSettingsHelper.cs" />
     <Compile Include="Models\Wrappers\IWebClientWrapper.cs" />
     <Compile Include="Models\Wrappers\WebClientWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
