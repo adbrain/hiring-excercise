@@ -12,12 +12,12 @@ namespace Adbrain.Reddit.UnitTests.WebApi.Models.Wrappers
     public class WebClientWrapperTest
     {
         [Test]
-        public void CanAccessGoogleHomePage()
+        public async Task CanAccessGoogleHomePage()
         {
             var url = @"http://www.google.com";
             var webClient = new WebClientWrapper();
 
-            var content = webClient.DownloadStringTaskAsync(url).Result;
+            var content = await webClient.DownloadStringTaskAsync(url);
 
             Assert.IsNotEmpty(content, "Content downloaded is empty.");
         }

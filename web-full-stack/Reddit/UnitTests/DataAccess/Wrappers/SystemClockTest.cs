@@ -12,7 +12,7 @@ namespace Adbrain.Reddit.UnitTests.DataAccess.Wrappers
     public class SystemClockTest
     {
         [Test]
-        public void GivesTheActualSystemTime()
+        public void Now_GivesTheActualSystemTime()
         {
             var clock = new SystemClock();
 
