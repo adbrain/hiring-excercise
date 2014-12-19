@@ -98,13 +98,13 @@ if ($VMServiceName -ne $null) { $VMServiceName = "${VMName}-Service" }
 Write-Host "Service name to be used is '$VMServiceName'."
 
 Write-Host "Creating virtual machine: '$VMName'"
-New-AzureQuickVM –Linux `
+New-AzureQuickVM -Linux `
                  -ImageName $VMImageName `
                  -Name $VMName `
                  -ServiceName $VMServiceName `
                  -AffinityGroup $AffinityGroupName `
                  -InstanceSize $VMInstanceSize `
-                 –LinuxUser $VMUser `
+                 -LinuxUser $VMUser `
                  -Password $VMPassword
 
 $vm = Get-AzureVM -Name $VMName -ServiceName $VMServiceName
