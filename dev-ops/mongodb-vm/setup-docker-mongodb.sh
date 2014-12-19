@@ -6,7 +6,7 @@ sudo apt-get install -y docker.io
 
 mongoDbPort=27017
 
-# Run MongoDB container
+# Run the MongoDB container
 sudo docker run -d -p $mongoDbPort:$mongoDbPort --name mongodb dockerfile/mongodb
 
 # Open MongoDB port on firewall
