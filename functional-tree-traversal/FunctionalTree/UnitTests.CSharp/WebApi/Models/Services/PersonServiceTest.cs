@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adbrain.UnitTests.CSharp
+namespace Adbrain.UnitTests.CSharp.WebApi.Models.Services
 {
     [TestFixture]
     public class PersonServiceTest
