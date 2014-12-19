@@ -16,7 +16,7 @@ namespace Adbrain.Reddit.WebApi.App_Start.DependencyInjection
         {
             Bind<IClock>().To<SystemClock>().InSingletonScope();
             Bind<ISqlDbContext>().To<SqlDbContext>().InRequestScope();
-            Bind<IRawDataRepository>().To<RawDataRepository>().InRequestScope();
+            Bind<ISportsDataRepository>().To<SportsDataRepository>().InRequestScope();
         }
     }
 }

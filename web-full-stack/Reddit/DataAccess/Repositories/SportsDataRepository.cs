@@ -10,29 +10,29 @@ using System.Threading.Tasks;
 
 namespace Adbrain.Reddit.DataAccess.Repositories
 {
-    public class RawDataRepository : IRawDataRepository
+    public class SportsDataRepository : ISportsDataRepository
     {
         private readonly IClock _clock;
         private readonly ISqlDbContext _dbContext;
-        private readonly DbSet<RawData> _dbSet;
+        private readonly DbSet<SportsData> _dbSet;
 
-        public RawDataRepository(
+        public SportsDataRepository(
             IClock clock,
             ISqlDbContext dbContext)
         {
             _clock = clock;
             _dbContext = dbContext;
-            _dbSet = _dbContext.Set<RawData>();
+            _dbSet = _dbContext.Set<SportsData>();
         }
 
-        public void Save(RawData entity)
+        public void Save(SportsData entity)
         {
             entity.SavedOn = _clock.Now;
             _dbSet.Add(entity);
             _dbContext.Save();
         }
 
-        public RawData GetLatest()
+        public SportsData GetLatest()
         {
             return _dbSet.OrderByDescending(x => x.Id).FirstOrDefault();
         }

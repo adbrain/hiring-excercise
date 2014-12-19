@@ -11,14 +11,14 @@ namespace Adbrain.Reddit.WebApi.Models.Services
 {
     public class RedditSportsService : IRedditSportsService
     {
-        private readonly IRawDataRepository _rawDataRepository;
+        private readonly ISportsDataRepository _sportsDataRepository;
         private readonly IWebClientWrapper _webClient;
 
         public RedditSportsService(
-            IRawDataRepository rawDataRepository,
+            ISportsDataRepository sportsDataRepository,
             IWebClientWrapper webClient)
         {
-            _rawDataRepository = rawDataRepository;
+            _sportsDataRepository = sportsDataRepository;
             _webClient = webClient;
         }
 
@@ -29,10 +29,10 @@ namespace Adbrain.Reddit.WebApi.Models.Services
             
             var content = await _webClient.DownloadStringTaskAsync(url);
 
-            var rawData = new RawData { RedditResponse = content };
-            _rawDataRepository.Save(rawData);
+            var sportsData = new SportsData { RedditResponse = content };
+            _sportsDataRepository.Save(sportsData);
 
-            var latest = _rawDataRepository.GetLatest().RedditResponse;
+            var latest = _sportsDataRepository.GetLatest().RedditResponse;
 
             // Todo: filter by domain and group by.
             return latest;

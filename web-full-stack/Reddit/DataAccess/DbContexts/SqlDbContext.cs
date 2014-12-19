@@ -23,7 +23,7 @@ namespace Adbrain.Reddit.DataAccess.DbContexts
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<RawData>()
+            modelBuilder.Entity<SportsData>()
                 .Property(p => p.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }

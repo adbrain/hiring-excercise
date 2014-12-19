@@ -48,10 +48,10 @@
   <ItemGroup>
     <Compile Include="DbContexts\ISqlDbContext.cs" />
     <Compile Include="DbContexts\SqlDbContext.cs" />
-    <Compile Include="Entities\RawData.cs" />
+    <Compile Include="Entities\SportsData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IRawDataRepository.cs" />
-    <Compile Include="Repositories\RawDataRepository.cs" />
+    <Compile Include="Repositories\ISportsDataRepository.cs" />
+    <Compile Include="Repositories\SportsDataRepository.cs" />
     <Compile Include="Wrappers\IClock.cs" />
     <Compile Include="Wrappers\SystemClock.cs" />
   </ItemGroup>

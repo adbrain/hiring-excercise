@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Adbrain.Reddit.DataAccess.Entities
 {
-    public class RawData
+    public class SportsData
     {
         public virtual int Id { get; set; }
 

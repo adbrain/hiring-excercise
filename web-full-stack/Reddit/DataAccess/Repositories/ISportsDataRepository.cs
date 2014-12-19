@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Adbrain.Reddit.DataAccess.Repositories
 {
-    public interface IRawDataRepository
+    public interface ISportsDataRepository
     {
-        void Save(RawData entity);
+        void Save(SportsData entity);
 
-        RawData GetLatest();
+        SportsData GetLatest();
     }
 }
