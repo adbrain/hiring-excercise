@@ -20,14 +20,18 @@ namespace Adbrain.DataAccess.Repositories
             _dbSet = _dbContext.Set<PersonNode>();
         }
 
-        public PersonNode GetHead()
+        public async Task<PersonNode> GetHead()
         {
-            return _dbSet.OrderBy(p => p.Id).FirstOrDefault();
+            var head = await _dbSet.OrderBy(p => p.Id).FirstOrDefaultAsync();
+
+            return head;
         }
 
-        public bool IsEmpty()
+        public async Task<bool> IsEmpty()
         {
-            return GetHead() == null;
+            var head = await GetHead();
+            
+            return head == null;
         }
 
         public void Add(PersonNode person)

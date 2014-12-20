@@ -9,9 +9,9 @@ namespace Adbrain.DataAccess.Repositories
 {
     public interface IPersonNodeRepository
     {
-        PersonNode GetHead();
+        Task<PersonNode> GetHead();
 
-        bool IsEmpty();
+        Task<bool> IsEmpty();
 
         void Add(PersonNode person);
     }

@@ -13,6 +13,6 @@ namespace Adbrain.DataAccess.DbContexts
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
-        int Save();
+        Task<int> SaveChangesAsync();
     }
 }
