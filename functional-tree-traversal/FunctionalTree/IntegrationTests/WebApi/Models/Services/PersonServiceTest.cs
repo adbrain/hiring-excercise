@@ -25,7 +25,7 @@ namespace Adbrain.IntegrationTests.WebApi.Models.Services
         }
 
         [Test]
-        public void AllPeopleInsertedAreReturnedWhenQueried()
+        public async Task AllPeopleInsertedAreReturnedWhenQueried()
         {
             // Arrange
             var people = new List<Person>
@@ -37,26 +37,32 @@ namespace Adbrain.IntegrationTests.WebApi.Models.Services
                 new Person { Name = "Twenty", Age = 20 },
                 new Person { Name = "Fourty", Age = 40 }
             };
-            people.ForEach(p => _personService1.Insert(p.Name, p.Age));
 
             foreach (var p in people)
             {
-                // Act
-                var actualPerson = _personService2.Find(p.Name, p.Age);
-
-                // Assert
-                string messageStart =
-                    String.Format("When quering for name {0} and age {1} ", p.Name, p.Age);
-                Assert.NotNull(actualPerson, messageStart + " no person found.");
-                Assert.AreEqual(p.Name, actualPerson.Name,
-                    messageStart + " person returned has wrong name.");
-                Assert.AreEqual(p.Age, actualPerson.Age,
-                    messageStart + " person returned has wrong age.");
+                await _personService1.Insert(p.Name, p.Age);
             }
+
+            //foreach (var p in people)
+            //{
+            //    // Act
+            //    var retrievedPerson = await _personService2.Find(p.Name, p.Age);
+
+            //    // Assert
+            //    string messageStart =
+            //        String.Format("When quering for name {0} and age {1} ", p.Name, p.Age);
+            //    Assert.NotNull(retrievedPerson, messageStart + " no person found.");
+            //    Assert.AreEqual(p.Name, retrievedPerson.Name,
+            //        messageStart + " person returned has wrong name.");
+            //    Assert.AreEqual(p.Age, retrievedPerson.Age,
+            //        messageStart + " person returned has wrong age.");
+            //}
+
+            Assert.IsFalse(true);
         }
 
         [Test]
-        public void InsertAHundredPeopleAndQueryExistingAndNonExistingPerson()
+        public async Task InsertAHundredPeopleAndQueryExistingAndNonExistingPerson()
         {
             // Arrange
             var allPeople = Enumerable.Range(1, 102).Select(i => new Person { Name = i.ToString(), Age = i }).ToList();
@@ -67,13 +73,16 @@ namespace Adbrain.IntegrationTests.WebApi.Models.Services
             var randomSeed = 9797;
             var random = new Random(randomSeed);
             // I insert people in a random order so that the tree is more balanced.
-            Randomize(peopleToInsert, random).ForEach(p => _personService1.Insert(p.Name, p.Age));
+            foreach (var p in Randomize(peopleToInsert, random))
+            {
+                _personService1.Insert(p.Name, p.Age).Wait();
+            }
             // I insert the person I will look up last
-            _personService1.Insert(existingPerson.Name, existingPerson.Age);
+            await _personService1.Insert(existingPerson.Name, existingPerson.Age);
 
             // Act
-            var missingPersonQueryResult = _personService2.Find(missingPerson.Name, missingPerson.Age);
-            var existingPersonQueryResult = _personService2.Find(existingPerson.Name, existingPerson.Age);
+            var missingPersonQueryResult = await _personService2.Find(missingPerson.Name, missingPerson.Age);
+            var existingPersonQueryResult = await _personService2.Find(existingPerson.Name, existingPerson.Age);
 
             // Assert
             Assert.IsNull(missingPersonQueryResult, "Querying a missing person should return null.");
@@ -82,6 +91,8 @@ namespace Adbrain.IntegrationTests.WebApi.Models.Services
                 "Name of existing person returned is not the expected.");
             Assert.AreEqual(existingPerson.Age, existingPersonQueryResult.Age,
                 "Age of existing person returned is not the expected.");
+
+            Assert.IsFalse(true);
         }
 
         private List<Person> Randomize(List<Person> people, Random random)

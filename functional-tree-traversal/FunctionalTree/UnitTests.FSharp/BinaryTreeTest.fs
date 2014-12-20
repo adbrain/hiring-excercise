@@ -46,24 +46,24 @@ module BinaryTreeTest =
                                   Right = x4 }) })
                                                
         [<Test>] member test.
-         ``on an empty tree returns None`` () =
+         `` on an empty tree returns None`` () =
             BinaryTree.find specs x1 None 
             |> should equal None
                    
         [<Test>] member test.
-         ``on a tree with single node finds the node if it has same name`` () =
+         `` on a tree with single node finds the node if it has same name`` () =
             BinaryTree.find specs x1 x1
             |> Option.get
             |> specs.IsEqual x1
             |> should be True
 
         [<Test>] member test.
-         ``on a tree with single node returns None if the name is different`` () =
+         `` on a tree with single node returns None if the name is different`` () =
             BinaryTree.find specs x1' x1
             |> should equal None
 
         [<Test>] member test.
-         ``on a tree with single node returns None if the key is different`` () =
+         `` on a tree with single node returns None if the key is different`` () =
             BinaryTree.find specs x1 x2
             |> should equal None
 

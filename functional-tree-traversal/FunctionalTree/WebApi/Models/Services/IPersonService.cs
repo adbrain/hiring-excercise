@@ -9,8 +9,8 @@ namespace Adbrain.WebApi.Models.Services
 {
     public interface IPersonService
     {
-        void Insert(string name, int age);
+        Task<int> Insert(string name, int age);
 
-        Person Find(string name, int age);
+        Task<Person> Find(string name, int age);
     }
 }
