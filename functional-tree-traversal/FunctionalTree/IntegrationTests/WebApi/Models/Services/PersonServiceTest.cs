@@ -43,22 +43,20 @@ namespace Adbrain.IntegrationTests.WebApi.Models.Services
                 await _personService1.Insert(p.Name, p.Age);
             }
 
-            //foreach (var p in people)
-            //{
-            //    // Act
-            //    var retrievedPerson = await _personService2.Find(p.Name, p.Age);
+            foreach (var p in people)
+            {
+                // Act
+                var retrievedPerson = await _personService2.Find(p.Name, p.Age);
 
-            //    // Assert
-            //    string messageStart =
-            //        String.Format("When quering for name {0} and age {1} ", p.Name, p.Age);
-            //    Assert.NotNull(retrievedPerson, messageStart + " no person found.");
-            //    Assert.AreEqual(p.Name, retrievedPerson.Name,
-            //        messageStart + " person returned has wrong name.");
-            //    Assert.AreEqual(p.Age, retrievedPerson.Age,
-            //        messageStart + " person returned has wrong age.");
-            //}
-
-            Assert.IsFalse(true);
+                // Assert
+                string messageStart =
+                    String.Format("When quering for name {0} and age {1} ", p.Name, p.Age);
+                Assert.NotNull(retrievedPerson, messageStart + " no person found.");
+                Assert.AreEqual(p.Name, retrievedPerson.Name,
+                    messageStart + " person returned has wrong name.");
+                Assert.AreEqual(p.Age, retrievedPerson.Age,
+                    messageStart + " person returned has wrong age.");
+            }
         }
 
         [Test]
@@ -75,7 +73,7 @@ namespace Adbrain.IntegrationTests.WebApi.Models.Services
             // I insert people in a random order so that the tree is more balanced.
             foreach (var p in Randomize(peopleToInsert, random))
             {
-                _personService1.Insert(p.Name, p.Age).Wait();
+                await _personService1.Insert(p.Name, p.Age);
             }
             // I insert the person I will look up last
             await _personService1.Insert(existingPerson.Name, existingPerson.Age);
@@ -91,8 +89,6 @@ namespace Adbrain.IntegrationTests.WebApi.Models.Services
                 "Name of existing person returned is not the expected.");
             Assert.AreEqual(existingPerson.Age, existingPersonQueryResult.Age,
                 "Age of existing person returned is not the expected.");
-
-            Assert.IsFalse(true);
         }
 
         private List<Person> Randomize(List<Person> people, Random random)
