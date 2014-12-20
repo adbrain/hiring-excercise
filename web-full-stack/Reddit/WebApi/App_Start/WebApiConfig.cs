@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace WebApi
+namespace Adbrain.Reddit.Reddit.WebApi.App_Start
 {
     public static class WebApiConfig
     {

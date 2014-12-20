@@ -26,6 +26,8 @@ namespace Adbrain.Reddit.DataAccess.DbContexts
             modelBuilder.Entity<SportsData>()
                 .Property(p => p.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<SportsData>()
+                .ToTable("SportsData");
         }
     }
 }

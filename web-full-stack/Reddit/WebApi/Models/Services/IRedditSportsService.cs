@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Adbrain.Reddit.WebApi.Models.JsonObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Adbrain.Reddit.WebApi.Models.Services
 {
     public interface IRedditSportsService
     {
-        Task<string> GetForDomain(string domain);
+        Task<IList<RedditAuthor>> GetForDomainByAuthor(string domain);
     }
 }

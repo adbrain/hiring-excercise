@@ -1,4 +1,5 @@
-﻿using Adbrain.Reddit.WebApi.Models.Services;
+﻿using Adbrain.Reddit.WebApi.Models.Helpers;
+using Adbrain.Reddit.WebApi.Models.Services;
 using Adbrain.Reddit.WebApi.Models.Wrappers;
 using Ninject.Modules;
 using Ninject.Web.Common;
@@ -18,9 +19,10 @@ namespace Adbrain.Reddit.WebApi.App_Start.DependencyInjection
             Bind<NameValueCollection>().ToConstant(ConfigurationManager.AppSettings)
                 .WhenInjectedExactlyInto<AppSettingsHelper>();
             Bind<IAppSettingsHelper>().To<AppSettingsHelper>().InSingletonScope();
-
+            
             Bind<IWebClientWrapper>().To<WebClientWrapper>().InTransientScope();
             Bind<IRedditSportsService>().To<RedditSportsService>().InTransientScope();
+            Bind<IRedditJsonHelper>().To<RedditJsonHelper>().InSingletonScope();
         }
     }
 }
