@@ -9,8 +9,8 @@ namespace Adbrain.Reddit.DataAccess.Repositories
 {
     public interface ISportsDataRepository
     {
-        void Save(SportsData entity);
+        Task<int> Save(SportsData entity);
 
-        SportsData GetLatest();
+        Task<SportsData> GetLatest();
     }
 }

@@ -27,25 +27,5 @@ namespace Adbrain.Reddit.DataAccess.DbContexts
                 .Property(p => p.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
-
-        public int Save()
-        {
-            try
-            {
-                return this.SaveChanges();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
-                    }
-                }
-
-                throw dbEx;
-            }
-        }
     }
 }

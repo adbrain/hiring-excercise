@@ -33,12 +33,13 @@ namespace Adbrain.Reddit.WebApi.Models.Services
             var content = await _webClient.DownloadStringTaskAsync(url);
 
             var sportsData = new SportsData { RedditResponse = content };
-            _sportsDataRepository.Save(sportsData);
+            await _sportsDataRepository.Save(sportsData);
 
-            var latest = _sportsDataRepository.GetLatest().RedditResponse;
+            var latest = await _sportsDataRepository.GetLatest();
+            var response = latest.RedditResponse;
 
             // Todo: filter by domain and group by.
-            return latest;
+            return response;
         }
     }
 }

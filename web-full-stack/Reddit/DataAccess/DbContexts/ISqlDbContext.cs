@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Adbrain.Reddit.DataAccess.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace Adbrain.Reddit.DataAccess.DbContexts
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
-        int Save();
+        Task<int> SaveChangesAsync();
     }
 }

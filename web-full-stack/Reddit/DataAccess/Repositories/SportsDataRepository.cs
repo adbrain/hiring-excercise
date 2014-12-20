@@ -25,16 +25,23 @@ namespace Adbrain.Reddit.DataAccess.Repositories
             _dbSet = _dbContext.Set<SportsData>();
         }
 
-        public void Save(SportsData entity)
+        public async Task<int> Save(SportsData entity)
         {
             entity.SavedOn = _clock.Now;
             _dbSet.Add(entity);
-            _dbContext.Save();
+            
+            var result = await _dbContext.SaveChangesAsync();
+            
+            return result;
         }
 
-        public SportsData GetLatest()
+        public async Task<SportsData> GetLatest()
         {
-            return _dbSet.OrderByDescending(x => x.Id).FirstOrDefault();
+            var result = await _dbSet
+                .OrderByDescending(x => x.SavedOn)
+                .FirstOrDefaultAsync();
+
+            return result;
         }
     }
 }

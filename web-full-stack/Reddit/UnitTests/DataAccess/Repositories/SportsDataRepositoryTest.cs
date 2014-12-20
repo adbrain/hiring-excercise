@@ -30,13 +30,13 @@ namespace Adbrain.Reddit.UnitTests.DataAccess.Repositories
 
             _data = new List<SportsData>
             {
-                new SportsData { Id = 2 },
-                new SportsData { Id = 1 },
-                new SportsData { Id = 3 }
+                new SportsData { Id = 2, SavedOn = _now.AddMinutes(-2) },
+                new SportsData { Id = 1, SavedOn = _now.AddMinutes(-3) },
+                new SportsData { Id = 3, SavedOn = _now.AddMinutes(-1) }
             }.AsQueryable();
 
             var mockDbContext = new Mock<ISqlDbContext>();
-            mockDbContext.Setup(x => x.Set<SportsData>()).Returns(CreateDbSet(_data));
+            mockDbContext.Setup(x => x.Set<SportsData>()).Returns(ToDbSet(_data));
             // Save the data passed to the mock context in _savedSportsData
             mockDbContext.Setup(x => x.Set<SportsData>().Add(It.IsAny<SportsData>())).Callback<SportsData>(x => _savedSportsData = x);
 
@@ -47,7 +47,7 @@ namespace Adbrain.Reddit.UnitTests.DataAccess.Repositories
         public void GetLatest_ReturnsTheDataWithHighestId()
         {
             var highestId = _data.OrderByDescending(x => x.Id).First().Id;
-            
+
             var latest = _sportsDataRepository.GetLatest();
             
             Assert.NotNull(latest, "Latest data object is null.");
@@ -71,7 +71,7 @@ namespace Adbrain.Reddit.UnitTests.DataAccess.Repositories
                 "SavedOn property on data was not set to the one provided by the clock.");
         }
 
-        private DbSet<SportsData> CreateDbSet(IQueryable<SportsData> data)
+        private DbSet<SportsData> ToDbSet(IQueryable<SportsData> data)
         {
             var mockSet = new Mock<DbSet<SportsData>>();
             mockSet.As<IQueryable<SportsData>>().Setup(m => m.Provider).Returns(data.Provider);
