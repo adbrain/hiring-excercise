@@ -111,6 +111,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Constants\AppSettingsKey.cs" />
     <Compile Include="Models\Services\IRedditSportsService.cs" />
     <Compile Include="Models\Services\RedditSportsService.cs" />
     <Compile Include="Models\Helpers\AppSettingsHelper.cs" />

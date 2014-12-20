@@ -1,5 +1,6 @@
 ﻿using Adbrain.Reddit.DataAccess.Entities;
 using Adbrain.Reddit.DataAccess.Repositories;
+using Adbrain.Reddit.WebApi.Models.Constants;
 using Adbrain.Reddit.WebApi.Models.Wrappers;
 using System;
 using System.Collections.Generic;
@@ -11,21 +12,23 @@ namespace Adbrain.Reddit.WebApi.Models.Services
 {
     public class RedditSportsService : IRedditSportsService
     {
+        private readonly IAppSettingsHelper _appSettingsHelper;
         private readonly ISportsDataRepository _sportsDataRepository;
         private readonly IWebClientWrapper _webClient;
 
         public RedditSportsService(
+            IAppSettingsHelper appSettingsHelper,
             ISportsDataRepository sportsDataRepository,
             IWebClientWrapper webClient)
         {
+            _appSettingsHelper = appSettingsHelper;
             _sportsDataRepository = sportsDataRepository;
             _webClient = webClient;
         }
 
         public async Task<string> GetForDomain(string domain)
         {
-            // Todo: place this in the config
-            var url = @"http://www.reddit.com/r/sports.json?limit=100";
+            var url = _appSettingsHelper.GetString(AppSettingsKey.RedditSportsUrl);
             
             var content = await _webClient.DownloadStringTaskAsync(url);
 
