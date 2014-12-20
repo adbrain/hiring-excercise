@@ -40,9 +40,9 @@ namespace Adbrain.UnitTests.CSharp.WebApi.Models.Services
         [TestCase("Thirty", 30, true)]
         [TestCase("Forty", 40, true)]
         [TestCase("Fifty", 50, false)]
-        public void FindReturnsTheCorrectNodeOrNullIfNonExistent(string name, int age, bool shouldExist)
+        public async Task FindReturnsTheCorrectNodeOrNullIfNonExistent(string name, int age, bool shouldExist)
         {
-            var person = _personService.Find(name, age);
+            var person = await _personService.Find(name, age);
 
             Assert.IsTrue(shouldExist ^ (person == null), 
                 shouldExist ? "Person should be null." : "Person should not be null");
@@ -75,8 +75,8 @@ namespace Adbrain.UnitTests.CSharp.WebApi.Models.Services
                 }
             };
 
-            _mockPersonNodeRepository.Setup(x => x.GetHead()).Returns(tree);
-            _mockPersonNodeRepository.Setup(x => x.IsEmpty()).Returns(false);
+            _mockPersonNodeRepository.Setup(x => x.GetHead()).Returns(Task.FromResult(tree));
+            _mockPersonNodeRepository.Setup(x => x.IsEmpty()).Returns(Task.FromResult(false));
         }
     }
 }

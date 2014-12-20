@@ -18,16 +18,16 @@ namespace Adbrain.UnitTests.CSharp.WebApi.Controllers
     public class PeopleControllerTest
     {
         [Test]
-        public void Get_ForExistingPerson_ReturnsThePerson()
+        public async Task Get_ForExistingPerson_ReturnsThePerson()
         {
             // Arrange
             var person = new Person { Name = "Name", Age = 18 };
             var mockPersonService = new Mock<IPersonService>();
-            mockPersonService.Setup(x => x.Find(person.Name, person.Age)).Returns(person);
+            mockPersonService.Setup(x => x.Find(person.Name, person.Age)).Returns(Task.FromResult(person));
             var peopleController = CreateController(mockPersonService.Object);
 
             // Act
-            var response = peopleController.Get(person.Name, person.Age);
+            var response = await peopleController.Get(person.Name, person.Age);
 
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode, "Response status code should be OK.");
@@ -38,33 +38,36 @@ namespace Adbrain.UnitTests.CSharp.WebApi.Controllers
             Assert.AreEqual(person.Age, result.Age, "Age of person returned is not the expected.");
         }
 
-        public void Get_ForNonExistingPerson_ReturnStatusCodeNotFound()
+        [Test]
+        public async Task Get_ForNonExistingPerson_ReturnStatusCodeNotFound()
         {
             // Arrange
             var person = new Person { Name = "Name", Age = 18 };
             var mockPersonService = new Mock<IPersonService>();
-            mockPersonService.Setup(x => x.Find(person.Name, person.Age)).Returns((Person)null);
+            mockPersonService.Setup(x => x.Find(person.Name, person.Age)).Returns(Task.FromResult((Person)null));
             var peopleController = CreateController(mockPersonService.Object);
 
             // Act
-            var response = peopleController.Get(person.Name, person.Age);
+            var response = await peopleController.Get(person.Name, person.Age);
 
             // Assert
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode, "Response status code should be Not Found.");
         }
 
-        public void Post_InsertsTheNewPersonAndReturnsOK()
+        [Test]
+        public async Task Post_InsertsTheNewPersonAndReturnsOK()
         {
             // Arrange
             var person = new Person { Name = "Name", Age = 18 };
             var mockPersonService = new Mock<IPersonService>();
             Person insertedPerson = null;
             mockPersonService.Setup(x => x.Insert(person.Name, person.Age))
-                .Callback<string, int>((name, age) => insertedPerson = new Person { Name = name, Age = age });
+                .Callback<string, int>((name, age) => insertedPerson = new Person { Name = name, Age = age })
+                .Returns(() => Task.FromResult(1));
             var peopleController = CreateController(mockPersonService.Object);
 
             // Act
-            var response = peopleController.Post(person.Name, person.Age);
+            var response = await peopleController.Post(person.Name, person.Age);
 
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode, "Response status code should be OK.");

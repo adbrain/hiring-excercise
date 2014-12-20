@@ -6,6 +6,7 @@ using Adbrain.WebApi.Models.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace Adbrain.WebApi.Models.Services
@@ -23,7 +24,7 @@ namespace Adbrain.WebApi.Models.Services
             _repository = repository;
         }
 
-        public void Insert(string name, int age)
+        public async Task<int> Insert(string name, int age)
         {
             var person = new PersonNode
             {
@@ -31,7 +32,7 @@ namespace Adbrain.WebApi.Models.Services
                 Age = age
             };
 
-            if (_repository.IsEmpty())
+            if (await _repository.IsEmpty())
             {
                 // This is the first node, I simply add it.
                 _repository.Add(person);
@@ -40,7 +41,7 @@ namespace Adbrain.WebApi.Models.Services
             {
                 // I traverse the tree to find the node that will become 
                 // the direct parent of the new node.
-                var currentNode = _repository.GetHead();
+                var currentNode = await _repository.GetHead();
                 bool goLeft = person.Age <= currentNode.Age;
                 while ( (goLeft && currentNode.LeftChildId.HasValue) ||
                         (!goLeft && currentNode.RightChildId.HasValue) )
@@ -61,12 +62,14 @@ namespace Adbrain.WebApi.Models.Services
                 }
             }
 
-            _dbContext.Save();
+            var result = await _dbContext.SaveChangesAsync();
+
+            return result;
         }
 
-        public Person Find(string name, int age)
+        public async Task<Person> Find(string name, int age)
         {
-            var head = _repository.GetHead();
+            var head = await _repository.GetHead();
             var personNode = PersonTree.Find(name, age, head);
             if (personNode == null)
                 return null;

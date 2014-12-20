@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{925EF463-A330-4BD8-BBE6-F8EB78057465}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{BF335C33-3281-4DD6-9673-7BCD04BDE7CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{E18AF15B-3624-4435-86AD-F2D909798102}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Engine", "Engine\Engine.fsproj", "{825006C5-400B-4B62-BDE4-C921B160B571}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{925EF463-A330-4BD8-BBE6-F8EB78057465}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "UnitTests.FSharp", "UnitTests.FSharp\UnitTests.FSharp.fsproj", "{97EE18F1-012A-4E98-A1FC-A5FE3B18BF60}"
 EndProject

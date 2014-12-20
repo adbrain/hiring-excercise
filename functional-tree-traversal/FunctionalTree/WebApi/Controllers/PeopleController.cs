@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Adbrain.WebApi.Controllers
@@ -18,9 +19,9 @@ namespace Adbrain.WebApi.Controllers
         }
 
         // GET api/people
-        public HttpResponseMessage Get(string name, int age)
+        public async Task<HttpResponseMessage> Get(string name, int age)
         {
-            var person = _service.Find(name, age);
+            var person = await _service.Find(name, age);
             if (person != null)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, person);
@@ -30,9 +31,9 @@ namespace Adbrain.WebApi.Controllers
         }
 
         // POST api/people
-        public HttpResponseMessage Post(string name, int age)
+        public async Task<HttpResponseMessage> Post(string name, int age)
         {
-            _service.Insert(name, age);
+            await _service.Insert(name, age);
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
