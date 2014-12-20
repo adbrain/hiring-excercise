@@ -29,7 +29,7 @@ namespace Adbrain.Reddit.IntegrationTests
         {
             // I wrap each test in a transaction so that they don't leave
             // any state in the database that can influence other tests.
-            _transactionScope = new TransactionScope();
+            _transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
         }
 
         [TearDown]
