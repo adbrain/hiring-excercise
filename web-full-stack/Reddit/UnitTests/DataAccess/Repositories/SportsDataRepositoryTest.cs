@@ -44,18 +44,18 @@ namespace Adbrain.Reddit.UnitTests.DataAccess.Repositories
         }
 
         [Test]
-        public void GetLatest_ReturnsTheDataWithHighestId()
+        public async Task GetLatest_ReturnsTheDataWithHighestId()
         {
             var highestId = _data.OrderByDescending(x => x.Id).First().Id;
 
-            var latest = _sportsDataRepository.GetLatest();
+            var latest = await _sportsDataRepository.GetLatest();
             
             Assert.NotNull(latest, "Latest data object is null.");
             Assert.AreEqual(highestId, latest.Id, "The id of the latest data is not the highest.");
         }
 
         [Test]
-        public void Save_SetsSavedOnToTheDateTimeProvidedByTheClock()
+        public async Task Save_SetsSavedOnToTheDateTimeProvidedByTheClock()
         {
             var notNow = _now.AddDays(-1);
             var dataToSave = new SportsData
@@ -64,7 +64,7 @@ namespace Adbrain.Reddit.UnitTests.DataAccess.Repositories
             };
             _savedSportsData = null;
 
-            _sportsDataRepository.Save(dataToSave);
+            await _sportsDataRepository.Save(dataToSave);
 
             Assert.AreSame(dataToSave, _savedSportsData, "Data were not saved by the context.");
             Assert.AreEqual(_savedSportsData.SavedOn, _now, 
