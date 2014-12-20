@@ -94,9 +94,10 @@ $VMInstanceSize = "Small" # Small is A0
 Write-Host "Instance size to be used: '$VMInstanceSize'"
 
 # Set service name if one was not provided.
-if ($VMServiceName -ne $null) { 
+if ($VMServiceName -ne $null) 
+{ 
     $guid = [guid]::NewGuid()
-	$VMServiceName = "${VMName}-${guid}" 
+	$VMServiceName = "Service-${guid}" 
 }
 Write-Host "Service name to be used is '$VMServiceName'."
 
