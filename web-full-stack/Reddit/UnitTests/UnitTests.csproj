@@ -70,9 +70,11 @@
     <Compile Include="DataAccess\Repositories\SportsDataRepositoryTest.cs" />
     <Compile Include="DataAccess\Wrappers\SystemClockTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebApi\Controllers\SportsControllerTest.cs" />
     <Compile Include="WebApi\Models\Helpers\AppSettingsHelperTest.cs" />
     <Compile Include="WebApi\Models\Helpers\DateTimeHelperTest.cs" />
     <Compile Include="WebApi\Models\Helpers\RedditJsonHelperTest.cs" />
+    <Compile Include="WebApi\Models\Services\RedditSportsServiceTest.cs" />
     <Compile Include="WebApi\Models\Wrappers\WebClientWrapperTest.cs" />
     <Compile Include="WebApi\RedditResponse.cs" />
   </ItemGroup>
