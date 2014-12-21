@@ -14,10 +14,6 @@ namespace Adbrain.Reddit.Reddit.WebApi
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-
-            // Force JSON
-            GlobalConfiguration.Configuration.Formatters.Clear();
-            GlobalConfiguration.Configuration.Formatters.Add(new JsonMediaTypeFormatter());
         }
     }
 }
