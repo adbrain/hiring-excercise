@@ -21,6 +21,8 @@ namespace Adbrain.Reddit.WebApi.Controllers
         // GET api/sports?domain='youtube.com'
         public async Task<HttpResponseMessage> Get(string domain)
         {
+            domain = domain.Trim('\'','"');
+
             var itemsByAuthor = await _redditSportsService.GetForDomainByAuthor(domain);
 
             var response = Request.CreateResponse(HttpStatusCode.OK, itemsByAuthor);

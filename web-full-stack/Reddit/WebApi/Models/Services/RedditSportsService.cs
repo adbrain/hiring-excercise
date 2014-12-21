@@ -47,7 +47,7 @@ namespace Adbrain.Reddit.WebApi.Models.Services
             var domainLowerCase = domain.ToLower();
             var filterdRedditItems =
                 redditItems
-                .Where(it => it.Domain.ToLower() == domainLowerCase);
+                .Where(it => it.Domain.ToLower() == domainLowerCase).ToList();
 
             var result =
                 filterdRedditItems
