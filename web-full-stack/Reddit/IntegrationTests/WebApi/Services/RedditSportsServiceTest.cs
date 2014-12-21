@@ -67,6 +67,17 @@ namespace Adbrain.Reddit.IntegrationTests.WebApi.Services
                     ""title"": ""title-A-2-b"",
                     ""created_utc"": 0,
                  }
+            },
+            {
+                ""kind"": ""t3"",
+                ""data"": {
+                    ""domain"": ""domainC"",
+                    ""id"": ""id-C-3-a"",
+                    ""author"": ""author3"",
+                    ""permalink"": ""permalink-C-3-a"",
+                    ""title"": ""title-C-3-a"",
+                    ""created_utc"": 0,
+                 }
             }],
         ""after"": ""after"",
         ""before"": null
@@ -122,7 +133,6 @@ namespace Adbrain.Reddit.IntegrationTests.WebApi.Services
             Assert.AreEqual(2, author1.Items.Count(), "Number of items for author1 is not the expected.");
             // Author author2 has one item for domainA only.
             Assert.AreEqual(1, author2.Items.Count(), "Number of items for author2 is not the expected.");
-
         }
 
     }

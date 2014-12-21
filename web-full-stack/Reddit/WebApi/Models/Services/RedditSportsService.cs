@@ -44,13 +44,25 @@ namespace Adbrain.Reddit.WebApi.Models.Services
 
             var redditItems = _redditJsonHelper.ExtractItems(latest.RedditResponse);
 
-            var domainLowerCase = domain.ToLower();
-            var filterdRedditItems =
-                redditItems
-                .Where(it => it.Domain.ToLower() == domainLowerCase).ToList();
+            var filteredRedditeItems = FilterByDomain(redditItems, domain);
 
+            var result = GroupByAuthor(filteredRedditeItems);
+
+            return result;
+        }
+
+        private IList<RedditItem> FilterByDomain(IList<RedditItem> items, string domain)
+        {
+            var domainLowerCase = domain.ToLower();
+            var filteredItems =
+                items.Where(it => it.Domain.ToLower() == domainLowerCase).ToList();
+            return filteredItems;
+        }
+
+        private IList<RedditAuthor> GroupByAuthor(IList<RedditItem> items)
+        {
             var result =
-                filterdRedditItems
+                items
                 .GroupBy(it => it.Author)
                 .Select(gr => new RedditAuthor
                 {
