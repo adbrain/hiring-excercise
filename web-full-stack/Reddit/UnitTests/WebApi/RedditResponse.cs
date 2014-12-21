@@ -8,7 +8,34 @@ namespace Adbrain.Reddit.UnitTests.WebApi
 {
     public static class RedditResponse
     {
-        public static string Example
+        public static string SingleItemExample
+        {
+            get
+            {
+                return @"{
+    ""kind"": ""Listing"",
+    ""data"": {
+        ""modhash"": """",
+        ""children"": [
+            {
+                ""kind"": ""t3"",
+                ""data"": {
+                    ""domain"": ""domain"",
+                    ""id"": ""id"",
+                    ""author"": ""author"",
+                    ""permalink"": ""permalink"",
+                    ""title"": ""title"",
+                    ""created_utc"": 1,
+                 }
+            }],
+        ""after"": ""after"",
+        ""before"": null
+      }
+}";
+            }
+        }
+
+        public static string RealExample
         {
             get
             {

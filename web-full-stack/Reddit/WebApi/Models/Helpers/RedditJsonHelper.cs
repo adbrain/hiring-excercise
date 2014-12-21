@@ -10,6 +10,13 @@ namespace Adbrain.Reddit.WebApi.Models.Helpers
 {
     public class RedditJsonHelper : IRedditJsonHelper
     {
+        private readonly IDateTimeHelper _dateTimeHelper;
+
+        public RedditJsonHelper(IDateTimeHelper dateTimeHelper)
+        {
+            _dateTimeHelper = dateTimeHelper;
+        }
+
         public List<RedditItem> ExtractItems(string redditResponse)
         {
             var json = JObject.Parse(redditResponse);
@@ -22,18 +29,11 @@ namespace Adbrain.Reddit.WebApi.Models.Helpers
                     Author = (string)it["data"]["author"],
                     Id = (string)it["data"]["id"],
                     Title = (string)it["data"]["title"],
-                    CreatedDate = DateTimeFromMillis((long)it["data"]["created_utc"]),
+                    CreatedDate = _dateTimeHelper.DateTimeFromSecsUtc((long)it["data"]["created_utc"]),
                     Permalink = (string)it["data"]["permalink"]
                 };
 
             return items.ToList();
-        }
-
-        private DateTime DateTimeFromMillis(long secs)
-        {
-            var posixTime = DateTime.SpecifyKind(new DateTime(1970, 1, 1), DateTimeKind.Utc);
-            var time = posixTime.AddSeconds(secs);
-            return time;
         }
     }
 }

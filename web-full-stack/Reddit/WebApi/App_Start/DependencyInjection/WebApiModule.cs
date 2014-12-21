@@ -19,6 +19,7 @@ namespace Adbrain.Reddit.WebApi.App_Start.DependencyInjection
             Bind<NameValueCollection>().ToConstant(ConfigurationManager.AppSettings)
                 .WhenInjectedExactlyInto<AppSettingsHelper>();
             Bind<IAppSettingsHelper>().To<AppSettingsHelper>().InSingletonScope();
+            Bind<IDateTimeHelper>().To<DateTimeHelper>().InSingletonScope();
             
             Bind<IWebClientWrapper>().To<WebClientWrapper>().InTransientScope();
             Bind<IRedditSportsService>().To<RedditSportsService>().InTransientScope();

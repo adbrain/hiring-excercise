@@ -114,6 +114,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Constants\AppSettingsKey.cs" />
+    <Compile Include="Models\Helpers\DateTimeHelper.cs" />
+    <Compile Include="Models\Helpers\IDateTimeHelper.cs" />
     <Compile Include="Models\Helpers\IRedditJsonHelper.cs" />
     <Compile Include="Models\Helpers\RedditJsonHelper.cs" />
     <Compile Include="Models\JsonObjects\RedditAuthor.cs" />
