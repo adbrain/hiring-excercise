@@ -14,7 +14,7 @@ namespace Adbrain.Reddit.DataAccess.Repositories
     {
         private readonly IClock _clock;
         private readonly ISqlDbContext _dbContext;
-        private readonly DbSet<SportsData> _dbSet;
+        private readonly IDbSet<SportsData> _dbSet;
 
         public SportsDataRepository(
             IClock clock,
@@ -22,7 +22,7 @@ namespace Adbrain.Reddit.DataAccess.Repositories
         {
             _clock = clock;
             _dbContext = dbContext;
-            _dbSet = _dbContext.Set<SportsData>();
+            _dbSet = _dbContext.GetSet<SportsData>();
         }
 
         public async Task<int> Save(SportsData entity)
@@ -38,7 +38,7 @@ namespace Adbrain.Reddit.DataAccess.Repositories
         public async Task<SportsData> GetLatest()
         {
             var result = await _dbSet
-                .OrderByDescending(x => x.SavedOn)
+                .OrderByDescending(x => x.Id)
                 .FirstOrDefaultAsync();
 
             return result;

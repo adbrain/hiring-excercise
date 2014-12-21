@@ -12,7 +12,7 @@ namespace Adbrain.Reddit.DataAccess.DbContexts
     {
         Database Database { get; }
 
-        DbSet<TEntity> Set<TEntity>() where TEntity : class;
+        IDbSet<TEntity> GetSet<TEntity>() where TEntity : class;
 
         Task<int> SaveChangesAsync();
     }

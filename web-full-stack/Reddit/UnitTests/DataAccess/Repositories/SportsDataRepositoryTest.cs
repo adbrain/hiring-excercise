@@ -2,11 +2,13 @@
 using Adbrain.Reddit.DataAccess.Entities;
 using Adbrain.Reddit.DataAccess.Repositories;
 using Adbrain.Reddit.DataAccess.Wrappers;
+using Adbrain.Reddit.UnitTests.DataAccess.TestDb;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,9 +38,9 @@ namespace Adbrain.Reddit.UnitTests.DataAccess.Repositories
             }.AsQueryable();
 
             var mockDbContext = new Mock<ISqlDbContext>();
-            mockDbContext.Setup(x => x.Set<SportsData>()).Returns(ToDbSet(_data));
+            mockDbContext.Setup(x => x.GetSet<SportsData>()).Returns(ToFakeDbSet(_data));
             // Save the data passed to the mock context in _savedSportsData
-            mockDbContext.Setup(x => x.Set<SportsData>().Add(It.IsAny<SportsData>())).Callback<SportsData>(x => _savedSportsData = x);
+            mockDbContext.Setup(x => x.GetSet<SportsData>().Add(It.IsAny<SportsData>())).Callback<SportsData>(x => _savedSportsData = x);
 
             _sportsDataRepository = new SportsDataRepository(mockClock.Object, mockDbContext.Object);
         }
@@ -71,14 +73,14 @@ namespace Adbrain.Reddit.UnitTests.DataAccess.Repositories
                 "SavedOn property on data was not set to the one provided by the clock.");
         }
 
-        private DbSet<SportsData> ToDbSet(IQueryable<SportsData> data)
+        private FakeDbSet<SportsData> ToFakeDbSet(IQueryable<SportsData> data)
         {
-            var mockSet = new Mock<DbSet<SportsData>>();
-            mockSet.As<IQueryable<SportsData>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<SportsData>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<SportsData>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<SportsData>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
-            return mockSet.Object;
+            var dbSet = new FakeDbSet<SportsData>();
+            foreach (var d in data)
+            {
+                dbSet.Add(d);
+            }
+            return dbSet;
         }
     }
 }

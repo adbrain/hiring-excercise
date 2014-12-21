@@ -29,5 +29,10 @@ namespace Adbrain.Reddit.DataAccess.DbContexts
             modelBuilder.Entity<SportsData>()
                 .ToTable("SportsData");
         }
+
+        public IDbSet<TEntity> GetSet<TEntity>() where TEntity : class
+        {
+            return Set<TEntity>(); 
+        }
     }
 }

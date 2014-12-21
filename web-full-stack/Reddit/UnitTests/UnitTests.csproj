@@ -67,7 +67,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\TestDb\AsyncEnumerableQuery.cs" />
+    <Compile Include="DataAccess\TestDb\AsyncEnumeratorWrapper.cs" />
     <Compile Include="DataAccess\Repositories\SportsDataRepositoryTest.cs" />
+    <Compile Include="DataAccess\TestDb\AsyncQueryProviderWrapper.cs" />
+    <Compile Include="DataAccess\TestDb\FakeDbSet.cs" />
     <Compile Include="DataAccess\Wrappers\SystemClockTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApi\Controllers\SportsControllerTest.cs" />
