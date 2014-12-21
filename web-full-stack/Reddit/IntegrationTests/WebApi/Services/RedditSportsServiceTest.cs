@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adbrain.Reddit.IntegrationTests.WebApi.Controllers
+namespace Adbrain.Reddit.IntegrationTests.WebApi.Services
 {
     [TestFixture]
-    public class SportsControllerTest : BaseIntegrationTest
+    public class RedditSportsServiceTest : BaseIntegrationTest
     {
         [Test]
         public void Test()
