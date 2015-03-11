@@ -1,10 +1,14 @@
+Please submit your solution as a pull request.
+
+---
+
 # Task
 
 Create a simple **HTML/CSS** layout using **LESS or SASS**.
 
 ## Goal
 
-To display a strong command of the web (coding), modern HTML/CSS layout building, the ability to use a css precompiler and a version control system.
+To display a strong command of the web (coding), modern HTML/CSS layout building, the ability to use a CSS precompiler and a Version Control System.
 
 ## Specification
 
@@ -16,3 +20,4 @@ Generally:
 
 - try to come up with a simple, non-hacky solution (avoid JS as long as possible)
 - use Google and Stack Overflow heavily if in need
+
