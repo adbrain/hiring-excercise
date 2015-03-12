@@ -1,6 +1,7 @@
-0. Clone the repository, cd into this folder, and checkout to a different branch:
+0. Clone the repository, checkout to a different branch and cd into this folder:
 
-		git clone https://github.com/adbrain/hiring-excercise.git && cd design/src && git checkout -b develop
+		git clone https://github.com/adbrain/hiring-excercise.git && cd hiring-excercise && git checkout -b develop
+		cd design/src
 
 1. Make sure you have node.js installed on your machine, if not, either donwload the binary, or use a package manager:
 
