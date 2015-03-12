@@ -18,4 +18,4 @@
 
 Happy developing :-)
 
-NOTE: You can optionally send the solution as a pull request.
+** Please submit your solution in a zip to francois@adbrain.com **
