@@ -16,7 +16,7 @@ To display a strong command of the web (coding), **modern** HTML/CSS layout buil
 
 See the spec mock [here](http://www.adbrain.com/assets/images/other/html-css.png).
 
-- browser support: IE 10+
+- do not worry about browser support, aim for latest Chrome
 
 Generally:
 
