@@ -8,7 +8,7 @@ Create a simple **HTML/CSS** layout using **LESS or SASS**.
 
 ## Goal
 
-To display a strong command of the web (coding), **modern** HTML/CSS layout building, the ability to use a CSS precompiler (and optionally a Version Control System).
+To display a strong command of the web (coding), **modern** HTML/CSS layout building, the ability to use a CSS precompiler (and optionally a Version Control System and Build Tools).
 
 ## Specification
 
