@@ -4,7 +4,7 @@ Please submit your solution in a zip to francois@adbrain.com
 
 # Task
 
-Create a simple **HTML/CSS** layout using **LESS or SASS**.
+Create a simple **HTML/CSS** layout using **LESS or SASS** from a [spec](http://www.adbrain.com/assets/images/other/html-css.png).
 
 ## Goal
 
@@ -18,5 +18,5 @@ See the spec mock [here](http://www.adbrain.com/assets/images/other/html-css.png
 
 Generally:
 
-- try to come up with a simple, non-hacky solution (avoid JS if possible)
-- use Google and Stack Overflow heavily if you think there might be a cleaner solution
+- try to come up with a modern, simple, non-hacky solution (avoid JS if possible)
+- feel free to use Google and Stack Overflow heavily if in any need
