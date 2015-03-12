@@ -6,7 +6,7 @@ Please submit your solution in a zip to francois@adbrain.com
 
 Create a simple **HTML/CSS** layout using **LESS or SASS** from a [spec](http://www.adbrain.com/assets/images/other/html-css.png).
 
-If you are familiar with Build Tools (e.g. Gulp, Grunt), feel free to use a predefined setup in the **src** folder. This will not only be a **major plus**, it will also save you a fair amount of time.
+If you are familiar with Build Tools (e.g. Gulp, Grunt), feel free to use a predefined setup in the **[src](https://github.com/adbrain/hiring-excercise/tree/master/design/src)** folder. This will not only be a **major plus**, it will also save you a fair amount of time.
 
 ## Goal
 
