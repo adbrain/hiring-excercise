@@ -1,5 +1,5 @@
 # Task
-Use BDD and C# to write and automate the following scenario:
+Use BDD and C# to write and automate the following scenario on http://amazon.com:
 
 1. Search for a book
 2. Add the book to the cart
