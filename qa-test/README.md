@@ -1,9 +1,11 @@
 # Task
-Using C# and the browser-automation tool of your choice (with Selenium being preferred), write a test that does the following on Amazon:
+Use BDD and C# to write and automate the following scenario:
 
-1. Search for any book (the choice of title is yours)
+1. Search for a book
 2. Add the book to the cart
 
-How you structure the test is up to you, but will be taken into account when the code is assessed. Bonus points are available for use of PageObjects, or SpecFlow to structure the tests.
+Any BDD and browser-automation tool can be used, but SpecFlow and Selenium are strongly preferred.
 
-Feel free to add any comments to clarify areas you feel are confusing or that you wish to highlight.
+How you structure the test is up to you, but will be taken into account when the code is assessed.
+
+Feel free to add any comments to clarify areas you feel are confusing or that you wish to highlight. Also please include instructions for running the tests.
