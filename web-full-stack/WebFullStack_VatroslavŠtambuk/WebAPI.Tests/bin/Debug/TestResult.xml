@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="F:\projects\WebFullStack_VatroslavŠtambuk\WebAPI.Tests\bin\Debug\WebAPI.Tests.dll" total="2" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-11-23" time="17:40:21">
+  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.8009" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.3\bin" machine-name="MASHINA" user="Ivan" user-domain="MASHINA" />
+  <culture-info current-culture="hr-HR" current-uiculture="en-GB" />
+  <test-suite type="Assembly" name="F:\projects\WebFullStack_VatroslavŠtambuk\WebAPI.Tests\bin\Debug\WebAPI.Tests.dll" executed="True" result="Success" success="True" time="2.677" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="WebAPI" executed="True" result="Success" success="True" time="2.677" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="2.676" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="SportsTests" executed="True" result="Success" success="True" time="2.676" asserts="0">
+                <results>
+                  <test-case name="WebAPI.Tests.SportsTests.Get_All_Posts_filtered" executed="True" result="Success" success="True" time="2.009" asserts="1" />
+                  <test-case name="WebAPI.Tests.SportsTests.Get_All_Posts_Unfiltered" executed="True" result="Success" success="True" time="0.661" asserts="1" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

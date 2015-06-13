@@ -1,0 +1,5 @@
+C:\Users\Igor\AppData\Roaming\Skype\My Skype Received Files\WebFullStack_VatroslavŠtambuk\WebFullStack_VatroslavŠtambuk\POCO\bin\Debug\POCO.dll
+C:\Users\Igor\AppData\Roaming\Skype\My Skype Received Files\WebFullStack_VatroslavŠtambuk\WebFullStack_VatroslavŠtambuk\POCO\bin\Debug\POCO.pdb
+C:\Users\Igor\AppData\Roaming\Skype\My Skype Received Files\WebFullStack_VatroslavŠtambuk\WebFullStack_VatroslavŠtambuk\POCO\obj\Debug\POCO.csprojResolveAssemblyReference.cache
+C:\Users\Igor\AppData\Roaming\Skype\My Skype Received Files\WebFullStack_VatroslavŠtambuk\WebFullStack_VatroslavŠtambuk\POCO\obj\Debug\POCO.dll
+C:\Users\Igor\AppData\Roaming\Skype\My Skype Received Files\WebFullStack_VatroslavŠtambuk\WebFullStack_VatroslavŠtambuk\POCO\obj\Debug\POCO.pdb
