@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\Mariusz\Desktop\devTest\devTest_WebTests\bin\Debug\devTest_WebTests.dll" total="2" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-11-28" time="21:05:34">
+  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5485" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.3\bin" machine-name="MARIUSZ-PC" user="Mariusz" user-domain="Mariusz-PC" />
+  <culture-info current-culture="en-GB" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Users\Mariusz\Desktop\devTest\devTest_WebTests\bin\Debug\devTest_WebTests.dll" executed="True" result="Success" success="True" time="37.524" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="devTest_Web" executed="True" result="Success" success="True" time="37.470" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="API" executed="True" result="Success" success="True" time="37.469" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="Services" executed="True" result="Success" success="True" time="37.468" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="37.468" asserts="0">
+                    <results>
+                      <test-suite type="TestFixture" name="RedditServiceTests" executed="True" result="Success" success="True" time="37.458" asserts="0">
+                        <results>
+                          <test-case name="devTest_Web.API.Services.Tests.RedditServiceTests.GetApiDataTest" executed="True" result="Success" success="True" time="36.335" asserts="1" />
+                          <test-case name="devTest_Web.API.Services.Tests.RedditServiceTests.SaveApiDataTest" executed="True" result="Success" success="True" time="0.584" asserts="1" />
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
