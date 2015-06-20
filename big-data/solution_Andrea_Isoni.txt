@@ -1,0 +1,7 @@
+I used the repository daily_maxt.txt, daily_mint.txt and temp-inventory.txt from the National Climate Data Center 
+to generate a MongoDB database with the following columns: latitude, longitude, date, tmax,tmin. 
+I compared  that data, which are averaged over 30 years (1980-2010), with the 2013 data for the first quarter 
+(January-March) at the station USC00210018 (latitude=47.2992,longitude=-965161'). The resulting figure of (Tmax+Tmin)/2
+shows that the temperature are higher with respect to the mean on the previous 30 years. 
+The climate change trend in this particular case shows an increase of the temperature (see figure below).
+![Alt text](https://cloud.githubusercontent.com/assets/8618000/5241084/76322482-7915-11e4-85c1-0f7f8c3f8361.png)
