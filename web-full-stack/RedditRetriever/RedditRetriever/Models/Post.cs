@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -22,6 +23,7 @@ namespace RedditRetriever.Models
         public List<object> UserReports { get; set; }
         [JsonProperty("link_flair_text")]
         public string LinkFlairText { get; set; }
+        [Key]
         public string Id { get; set; }
         [JsonProperty("from_kind")]
         public object FromKind { get; set; }
