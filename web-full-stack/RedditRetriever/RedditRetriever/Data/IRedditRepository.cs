@@ -8,6 +8,6 @@ namespace RedditRetriever.Data
 {
     public interface IRedditRepository
     {
-        void SavePosts(IEnumerable<Post> posts);
+        void SavePosts(IEnumerable<PostJsonModel> posts);
     }
 }
