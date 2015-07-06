@@ -2,6 +2,7 @@
 using RedditRetriever.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -14,8 +15,15 @@ namespace RedditRetriever.Data
         {
             using(var ctx = new RedditDBDataContext())
             {
-                ctx.Posts.AddRange(posts);
-                await ctx.SaveChangesAsync();
+                try
+                {
+                    ctx.Posts.AddRange(posts);
+                    await ctx.SaveChangesAsync();
+                }
+                catch(DbUpdateException)
+                {
+
+                }
             }
         }
     }
