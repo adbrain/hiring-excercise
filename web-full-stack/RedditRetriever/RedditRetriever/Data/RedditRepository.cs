@@ -10,11 +10,11 @@ namespace RedditRetriever.Data
 {
     public class RedditRepository : IRedditRepository
     {
-        public async Task SavePostsAsync(IEnumerable<PostJsonModel> posts)
+        public async Task SavePostsAsync(IEnumerable<Post> posts)
         {
             using(var ctx = new RedditDBDataContext())
             {
-                ctx.RedditPostsJson.AddRange(posts);
+                ctx.Posts.AddRange(posts);
                 await ctx.SaveChangesAsync();
             }
         }

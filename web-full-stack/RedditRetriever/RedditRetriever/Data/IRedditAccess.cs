@@ -9,6 +9,7 @@ namespace RedditRetriever.Data
 {
     public interface IRedditAccess
     {
-        Task<IEnumerable<Post>> GetUrlAsync(string url);
+        string RetrieveUrlWithDomain(string domain);
+        Task<IEnumerable<Post>> GetPathAsync(string path);
     }
 }

@@ -10,6 +10,6 @@ namespace RedditRetriever.Data.Database
     public class RedditDBDataContext : DbContext
     {
         public RedditDBDataContext() : base() { }
-        public DbSet<PostJsonModel> RedditPostsJson { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }

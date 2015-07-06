@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace RedditRetriever.Data
 {
     public interface IRedditRepository
     {
-        void SavePosts(IEnumerable<PostJsonModel> posts);
+        Task SavePostsAsync(IEnumerable<Post> posts);
     }
 }
