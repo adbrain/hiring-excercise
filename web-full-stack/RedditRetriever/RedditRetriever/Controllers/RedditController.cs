@@ -29,12 +29,12 @@ namespace RedditRetriever.Controllers
 
         [HttpGet]
         [Route("sports")]
-        public async Task<IEnumerable<IGrouping<string, Post>>> GetSubreddit(string domain)
+        public async Task<IEnumerable<UserPostsModel>> GetSubreddit(string domain)
         {
             var url = _reddit.RetrieveUrlWithDomain(domain);
             var posts = await _reddit.GetPathAsync(url);
             await _repository.SavePostsAsync(posts);
-            return posts.GroupBy(x => x.Author);
+            return posts.GroupBy(x => x.Author).Select(x => new UserPostsModel { Author = x.Key, Posts = x.AsEnumerable() });
         }
     }
 }
