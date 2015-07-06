@@ -85,8 +85,11 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\RedditController.cs" />
+    <Compile Include="Data\Database\RedditDBDataContext.cs" />
     <Compile Include="Data\IRedditAccess.cs" />
+    <Compile Include="Data\IRedditRepository.cs" />
     <Compile Include="Data\RedditAccess.cs" />
+    <Compile Include="Data\RedditRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
