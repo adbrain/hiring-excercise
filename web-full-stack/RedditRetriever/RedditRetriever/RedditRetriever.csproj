@@ -97,6 +97,7 @@
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\SubredditSearch.cs" />
     <Compile Include="Models\SubredditSearchData.cs" />
+    <Compile Include="Models\UserPostsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
