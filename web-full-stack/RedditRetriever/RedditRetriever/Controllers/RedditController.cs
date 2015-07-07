@@ -33,8 +33,15 @@ namespace RedditRetriever.Controllers
         {
             var url = _reddit.RetrieveUrlWithDomain(domain);
             var posts = await _reddit.GetPathAsync(url);
-            await _repository.SavePostsAsync(posts);
-            return posts.GroupBy(x => x.Author).Select(x => new UserPostsModel { Author = x.Key, Posts = x.AsEnumerable() });
+            var callId = Guid.NewGuid().ToString();
+            var postsWithCallId = posts.Select(x => 
+                {
+                    x.CallId = callId;
+                    return x;
+                });
+            await _repository.SavePostsAsync(postsWithCallId);
+            var retrievedPosts = _repository.GetPosts(callId);
+            return retrievedPosts.GroupBy(x => x.Author).Select(x => new UserPostsModel { Author = x.Key, Posts = x.AsEnumerable() });
         }
     }
 }
