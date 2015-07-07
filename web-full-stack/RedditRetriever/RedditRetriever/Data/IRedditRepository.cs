@@ -10,5 +10,6 @@ namespace RedditRetriever.Data
     public interface IRedditRepository
     {
         Task SavePostsAsync(IEnumerable<Post> posts);
+        IEnumerable<Post> GetPosts(string callId);
     }
 }

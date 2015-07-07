@@ -26,5 +26,15 @@ namespace RedditRetriever.Data
                 }
             }
         }
+
+        public IEnumerable<Post> GetPosts(string callId)
+        {
+            using(var ctx = new RedditDBDataContext())
+            {
+                return ctx.Posts.Where(x => x.CallId == callId)
+                                .Take(100)
+                                .AsEnumerable();
+            }
+        }
     }
 }

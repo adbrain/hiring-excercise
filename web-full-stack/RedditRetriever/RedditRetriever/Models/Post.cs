@@ -9,6 +9,8 @@ namespace RedditRetriever.Models
 {
     public class Post
     {
+        [Key]
+        public string CallId { get; set; }
         public string Domain { get; set; }
         [JsonProperty("banned_by")]
         public object BannedBy { get; set; }
