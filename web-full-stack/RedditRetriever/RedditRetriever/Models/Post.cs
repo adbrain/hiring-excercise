@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -10,6 +11,7 @@ namespace RedditRetriever.Models
     public class Post
     {
         [Key]
+        [Column(Order=1)]
         public string CallId { get; set; }
         public string Domain { get; set; }
         [JsonProperty("banned_by")]
@@ -26,6 +28,7 @@ namespace RedditRetriever.Models
         [JsonProperty("link_flair_text")]
         public string LinkFlairText { get; set; }
         [Key]
+        [Column(Order=2)]
         public string Id { get; set; }
         [JsonProperty("from_kind")]
         public object FromKind { get; set; }

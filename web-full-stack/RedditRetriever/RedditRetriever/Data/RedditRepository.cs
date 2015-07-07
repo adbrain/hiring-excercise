@@ -15,15 +15,8 @@ namespace RedditRetriever.Data
         {
             using(var ctx = new RedditDBDataContext())
             {
-                try
-                {
-                    ctx.Posts.AddRange(posts);
-                    await ctx.SaveChangesAsync();
-                }
-                catch(DbUpdateException)
-                {
-
-                }
+                ctx.Posts.AddRange(posts);
+                await ctx.SaveChangesAsync();
             }
         }
 
@@ -33,7 +26,7 @@ namespace RedditRetriever.Data
             {
                 return ctx.Posts.Where(x => x.CallId == callId)
                                 .Take(100)
-                                .AsEnumerable();
+                                .ToList();
             }
         }
     }
