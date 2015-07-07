@@ -45,7 +45,7 @@ namespace RedditRetriever.Controllers
                                  .Select(x => 
                                      new UserPostsModel { Author = x.Key, 
                                                           Posts = x.Select(y => 
-                                                               new PostDto { Id = y.Id, PermaLink = y.Permalink, Title = y.Title, CreatedDate = DateTimeUnixConverter.FromUnixTimestamp(y.CreatedUtc) }) });
+                                                               new PostDto { Id = y.Id, PermaLink = y.Permalink, Title = y.Title, CreatedDate = DateTimeUnixConverter.FromUnixTimestamp(y.Created) }).ToList() });
         }
     }
 }
