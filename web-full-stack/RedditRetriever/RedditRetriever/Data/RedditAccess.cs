@@ -25,7 +25,8 @@ namespace RedditRetriever.Data
         {
             var subredditJson = await _client.GetStringAsync(url);
             var posts = JsonConvert.DeserializeObject<SubredditSearch>(subredditJson);
-            return posts.Data.Children.Select(x => x.data);
+            return posts.Data.Children
+                             .Select(x => x.data);
         }
 
         public string RetrieveUrlWithDomain(string domain)
