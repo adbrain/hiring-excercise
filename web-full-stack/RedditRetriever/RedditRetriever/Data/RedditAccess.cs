@@ -31,7 +31,6 @@ namespace RedditRetriever.Data
 
         public string RetrieveUrlWithDomain(string domain)
         {
-
             if (String.IsNullOrWhiteSpace(domain))
             {
                 return BasePath;
