@@ -41,7 +41,11 @@ namespace RedditRetriever.Controllers
                 });
             await _repository.SavePostsAsync(postsWithCallId);
             var retrievedPosts = _repository.GetPosts(callId);
-            return retrievedPosts.GroupBy(x => x.Author).Select(x => new UserPostsModel { Author = x.Key, Posts = x.AsEnumerable() });
+            return retrievedPosts.GroupBy(x => x.Author)
+                                 .Select(x => 
+                                     new UserPostsModel { Author = x.Key, 
+                                                          Posts = x.Select(y => 
+                                                               new PostDto { Id = y.Id, PermaLink = y.Permalink, Title = y.Title, CreatedDate = DateTimeUnixConverter.FromUnixTimestamp(y.CreatedUtc) }) });
         }
     }
 }
