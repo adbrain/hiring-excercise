@@ -10,28 +10,21 @@ namespace RedditRetriever.Tests
 {
     public class MockRepository : IRedditRepository
     {
-        private string _commonDomain;
-        private int _elementsLength;
+        private List<Models.Post> _posts = new List<Models.Post>();
 
-        public MockRepository(string commonDomain, int elementsLength)
+        public MockRepository()
         {
-            _elementsLength = elementsLength;
-            _commonDomain = commonDomain;
         }
 
         public async Task SavePostsAsync(IEnumerable<Models.Post> posts)
         {
-            if(_commonDomain != null)
-            {
-                var commonDomain = posts.All(x => x.Domain == _commonDomain);
-                var domainNotNull = posts.All(x => x.Domain != null);
-                Assert.IsTrue(commonDomain);
-                Assert.IsTrue(domainNotNull);
-            }
-            else
-            {
-                Assert.AreEqual(_elementsLength, posts.Count());
-            }
+            _posts.AddRange(posts);
+        }
+
+
+        public IEnumerable<Models.Post> GetPosts(string callId)
+        {
+            return _posts.Where(x => x.CallId == callId);
         }
     }
 }

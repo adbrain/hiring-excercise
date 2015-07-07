@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -61,11 +58,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateTimeUnixTimestampConverterTests.cs" />
     <Compile Include="FullFlowTest.cs" />
-    <Compile Include="MockRedditAccess.cs" />
+    <Compile Include="MixedDomainRedditAccess.cs" />
     <Compile Include="MockRepository.cs" />
     <Compile Include="RedditAccessTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SingleDomainRedditAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="RedditRetriever.Tests.dll.config">
