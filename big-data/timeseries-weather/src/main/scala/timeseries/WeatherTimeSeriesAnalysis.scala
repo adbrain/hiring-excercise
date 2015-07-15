@@ -26,12 +26,20 @@ object WeatherTimeSeriesAnalysis {
     sqlContext.sparkContext.stop()
   }
 
+
+  /**
+   * Creates the Spark conf from the given Cassandra connection host
+   * @param args Arguments passed into main that contain the Cassandra connection host
+   */
   private def createSparkConf(args: Array[String]): SparkConf = {
     new SparkConf()
       .setAppName("Weather Data Load")
       .set("spark.cassandra.connection.host", args(0))
   }
 
+  /**
+   * Saves the descriptive stats into several directories
+   */
   def saveStats(weatherDataLoader: WeatherDataLoader): Unit = {
     val prefix = "dailyWeather"
     new StatsStorer(weatherDataLoader.avgTempsPerLocPerMonth, prefix + "AvgTempsPerLocPerMonth").store()
