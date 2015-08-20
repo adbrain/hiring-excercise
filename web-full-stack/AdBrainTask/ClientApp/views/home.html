@@ -1,0 +1,25 @@
+﻿
+<div class="row">
+    Filter by domain
+    <input type="text" ng-model="sportDomain" placeholder="ex: self.sports" />
+    <input type="button" ng-click="filterData()" value="Filter" />
+    Total authors: {{ sportGroups ? sportGroups.length : 0 }}
+
+    <div ng-show="loading">
+        <span style="color:crimson">Loading ...</span>
+    </div>
+    <ul>
+        <li ng-repeat="sportGroup in sportGroups">
+            <hr />
+            <span style="color:crimson"><b>Author:</b> {{ sportGroup[0].Author }}</span>
+            <br />
+
+            <div ng-repeat="sport in sportGroup">
+                <b>Title:</b> <a href="{{ 'http://www.reddit.com' + sport.Url }}">{{ sport.Title }}</a><br />
+                <b>Domain:</b> <span>{{ sport.Domain }}</span><br />
+                <b>Created on:</b> <span>{{ sport.DateCreated }}</span>
+                <br /><br />
+            </div>            
+        </li>
+    </ul>
+</div>
