@@ -20,7 +20,7 @@
 
         $scope.filterData = function () {
             $scope.loading = true;
-            $http.get('/api/sportPosts?domain=' + $scope.sportPostDomain).then(function (response) {
+            $http.get('/sports?domain=' + $scope.sportPostDomain).then(function (response) {
                 $scope.sportPostGroups = response.data;
                 $scope.loading = false;
             });

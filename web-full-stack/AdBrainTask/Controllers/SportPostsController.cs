@@ -22,6 +22,7 @@ namespace AdBrainTask.Controllers
             this.sportsRepository = sportsRepository;
         }
 
+        [Route("sports")]
         public IHttpActionResult Get(string domain)
         {
             // Remove all current sports from database.
