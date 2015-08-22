@@ -18,6 +18,6 @@ namespace AdBrainTask.DataAccess
         /// </summary>
         public AdBrainContext() : base("AdBrainContext") { }
 
-        public DbSet<Sport> Sports { get; set; }
+        public DbSet<SportPost> Sports { get; set; }
     }
 }

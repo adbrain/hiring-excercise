@@ -1,4 +1,5 @@
 ﻿using AdBrainTask.DataAccess;
+using AdBrainTask.Dtos.Response;
 using AdBrainTask.Repositories;
 using System;
 using System.Linq;
@@ -6,16 +7,16 @@ using System.Web.Http;
 
 namespace AdBrainTask.Controllers
 {
-    public class SportsController : ApiController
+    public class SportPostsController : ApiController
     {
-        public SportsController()
+        public SportPostsController()
             : base()
         {
             this.redditClient = new RedditClient();
-            this.sportsRepository = new SportsRepository();
+            this.sportsRepository = new SportPostsRepository();
         }
 
-        public SportsController(IRedditClient redditClient, ISportsRepository sportsRepository)
+        public SportPostsController(IRedditClient redditClient, ISportPostsRepository sportsRepository)
         {
             this.redditClient = redditClient;
             this.sportsRepository = sportsRepository;
@@ -31,7 +32,7 @@ namespace AdBrainTask.Controllers
             // Add new sports from reddit to database
             this.sportsRepository.AddMany(sportsFromReddit);
 
-            IQueryable<AdBrainTask.DataModels.Sport> query;
+            IQueryable<AdBrainTask.DataModels.SportPost> query;
 
             if(!string.IsNullOrEmpty(domain))
             {
@@ -46,7 +47,7 @@ namespace AdBrainTask.Controllers
             // Compose response
             var response = query
                 .ToList()
-                .Select(s => new AdBrainTask.Dtos.Response.Sport() 
+                .Select(s => new SportPostDto() 
                 { 
                     Author = s.Author,
                     Domain = s.Domain,
@@ -61,6 +62,6 @@ namespace AdBrainTask.Controllers
         }
 
         private IRedditClient redditClient;
-        private ISportsRepository sportsRepository;
+        private ISportPostsRepository sportsRepository;
     }
 }

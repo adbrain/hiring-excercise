@@ -1,5 +1,7 @@
 ﻿using AdBrainTask.Controllers;
 using AdBrainTask.DataAccess;
+using AdBrainTask.DataModels;
+using AdBrainTask.Dtos.Response;
 using AdBrainTask.Repositories;
 using AdBrainTask.Tests.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,13 +13,13 @@ using System.Web.Http.Results;
 namespace AdBrainTask.Tests
 {
     [TestClass]
-    public class SportsControllerTests
+    public class SportPostsControllerTests
     {
         [TestMethod]
         public void Get_ShouldReturn_FilteredByDomain_IfDomainProvided()
         {
-            IList<AdBrainTask.DataModels.Sport> mockedSports = new List<AdBrainTask.DataModels.Sport>();
-            mockedSports.Add(new AdBrainTask.DataModels.Sport()
+            IList<SportPost> mockedSports = new List<SportPost>();
+            mockedSports.Add(new SportPost()
             {
                 Id = "abc",
                 Author = "author1",
@@ -26,7 +28,7 @@ namespace AdBrainTask.Tests
                 Permalink = "/sport1",
                 Created = "1439766987"
             });
-            mockedSports.Add(new AdBrainTask.DataModels.Sport()
+            mockedSports.Add(new SportPost()
             {
                 Id = "dsa",
                 Author = "author1",
@@ -35,7 +37,7 @@ namespace AdBrainTask.Tests
                 Permalink = "/sport2",
                 Created="1439766987"
             });
-            mockedSports.Add(new AdBrainTask.DataModels.Sport()
+            mockedSports.Add(new SportPost()
             {
                 Id = "jkl",
                 Author = "author2",
@@ -46,17 +48,17 @@ namespace AdBrainTask.Tests
             });
 
             IRedditClient redditClient = new RedditClientMock(mockedSports);
-            ISportsRepository sportsRepository = new SportsRepositoryMock();
-            SportsController controller = new SportsController(redditClient, sportsRepository);
+            ISportPostsRepository sportsRepository = new SportPostsRepositoryMock();
+            SportPostsController controller = new SportPostsController(redditClient, sportsRepository);
 
             var actionResult = controller.Get("domain1");
-            var response = actionResult as OkNegotiatedContentResult<IEnumerable<IGrouping<string, AdBrainTask.Dtos.Response.Sport>>>;
+            var response = actionResult as OkNegotiatedContentResult<IEnumerable<IGrouping<string, SportPostDto>>>;
 
             Assert.IsNotNull(response.Content);
 
             var sportsFromController = response.Content;
             var mockedSportsFiltered = mockedSports.Where(ms => ms.Domain == "domain1")
-                .Select(s => new AdBrainTask.Dtos.Response.Sport()
+                .Select(s => new SportPostDto()
                 {
                     Author = s.Author,
                     Domain = s.Domain,
@@ -71,7 +73,7 @@ namespace AdBrainTask.Tests
             foreach (var mockedSportsGroup in mockedSportsFiltered.ToList())
             {
                 Assert.AreEqual<string>(mockedSportsGroup.Key, sportsFromController.ToList()[index].Key);                
-                Assert.IsTrue(mockedSportsGroup.ToList().SequenceEqual(sportsFromController.ToList()[index].ToList(), new SportDtoComparer()));
+                Assert.IsTrue(mockedSportsGroup.ToList().SequenceEqual(sportsFromController.ToList()[index].ToList(), new SportPostDtoComparer()));
                 index = index + 1;
             }
         }
@@ -79,8 +81,8 @@ namespace AdBrainTask.Tests
         [TestMethod]
         public void Get_ShouldReturn_All_IfDomainNotProvided()
         {
-            IList<AdBrainTask.DataModels.Sport> mockedSports = new List<AdBrainTask.DataModels.Sport>();
-            mockedSports.Add(new AdBrainTask.DataModels.Sport()
+            IList<SportPost> mockedSports = new List<SportPost>();
+            mockedSports.Add(new AdBrainTask.DataModels.SportPost()
             {
                 Id = "abc",
                 Author = "author1",
@@ -89,7 +91,7 @@ namespace AdBrainTask.Tests
                 Permalink = "/sport1",
                 Created = "1439766987"
             });
-            mockedSports.Add(new AdBrainTask.DataModels.Sport()
+            mockedSports.Add(new SportPost()
             {
                 Id = "dsa",
                 Author = "author1",
@@ -98,7 +100,7 @@ namespace AdBrainTask.Tests
                 Permalink = "/sport2",
                 Created = "1439766987"
             });
-            mockedSports.Add(new AdBrainTask.DataModels.Sport()
+            mockedSports.Add(new SportPost()
             {
                 Id = "jkl",
                 Author = "author2",
@@ -109,17 +111,17 @@ namespace AdBrainTask.Tests
             });
 
             IRedditClient redditClient = new RedditClientMock(mockedSports);
-            ISportsRepository sportsRepository = new SportsRepositoryMock();
-            SportsController controller = new SportsController(redditClient, sportsRepository);
+            ISportPostsRepository sportsRepository = new SportPostsRepositoryMock();
+            SportPostsController controller = new SportPostsController(redditClient, sportsRepository);
 
             var actionResult = controller.Get("");
-            var response = actionResult as OkNegotiatedContentResult<IEnumerable<IGrouping<string, AdBrainTask.Dtos.Response.Sport>>>;
+            var response = actionResult as OkNegotiatedContentResult<IEnumerable<IGrouping<string, SportPostDto>>>;
 
             Assert.IsNotNull(response.Content);
 
             var sportsFromController = response.Content;
             var mockedSportsFiltered = mockedSports
-                .Select(s => new AdBrainTask.Dtos.Response.Sport()
+                .Select(s => new SportPostDto()
                 {
                     Author = s.Author,
                     Domain = s.Domain,
@@ -134,7 +136,7 @@ namespace AdBrainTask.Tests
             foreach (var mockedSportsGroup in mockedSportsFiltered.ToList())
             {
                 Assert.AreEqual<string>(mockedSportsGroup.Key, sportsFromController.ToList()[index].Key);
-                Assert.IsTrue(mockedSportsGroup.ToList().SequenceEqual(sportsFromController.ToList()[index].ToList(), new SportDtoComparer()));
+                Assert.IsTrue(mockedSportsGroup.ToList().SequenceEqual(sportsFromController.ToList()[index].ToList(), new SportPostDtoComparer()));
                 index = index + 1;
             }
         }

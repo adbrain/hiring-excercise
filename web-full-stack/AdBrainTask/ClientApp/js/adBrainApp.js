@@ -16,12 +16,12 @@
         }]);
 
     adBrainApp.controller('adBrainCtrl', ['$scope', '$http',  function ($scope, $http) {
-        $scope.sportDomain = '';
+        $scope.sportPostDomain = '';
 
         $scope.filterData = function () {
             $scope.loading = true;
-            $http.get('/api/sports?domain=' + $scope.sportDomain).then(function (response) {
-                $scope.sportGroups = response.data;
+            $http.get('/api/sportPosts?domain=' + $scope.sportPostDomain).then(function (response) {
+                $scope.sportPostGroups = response.data;
                 $scope.loading = false;
             });
         };

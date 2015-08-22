@@ -2,7 +2,7 @@
 
 namespace AdBrainTask.DataModels
 {
-    public class Sport
+    public class SportPost
     {
         public string Id { get; set; }
 

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using AdBrainTask.DataModels;
+using System.Collections.Generic;
 
 namespace AdBrainTask.DataAccess
 {
     public interface IRedditClient
     {
-        IList<AdBrainTask.DataModels.Sport> GetSports();
+        IList<SportPost> GetSports();
     }
 }

@@ -2,7 +2,7 @@
 
 namespace AdBrainTask.Dtos.Response
 {
-    public class Sport
+    public class SportPostDto
     {
         public string Id { get; set; }
 

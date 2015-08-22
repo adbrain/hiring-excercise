@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using AdBrainTask.DataModels;
+using AdBrainTask.Dtos.Response;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -9,9 +11,9 @@ namespace AdBrainTask.DataAccess
 {
     public class RedditClient : IRedditClient
     {
-        public IList<AdBrainTask.DataModels.Sport> GetSports()
+        public IList<AdBrainTask.DataModels.SportPost> GetSports()
         {
-            IList<AdBrainTask.DataModels.Sport> sports = new List<AdBrainTask.DataModels.Sport>();
+            IList<SportPost> sports = new List<SportPost>();
 
             using (var client = new HttpClient())
             {
@@ -23,7 +25,7 @@ namespace AdBrainTask.DataAccess
                     var jsonObjectFromRedit = redditResponse.Content.ReadAsAsync<JObject>();
                     var serializer = JsonSerializer.Create();
                     sports = serializer
-                        .Deserialize<ICollection<AdBrainTask.DataModels.ReditSport>>(jsonObjectFromRedit.Result["data"]["children"].CreateReader())
+                        .Deserialize<ICollection<RedditSportPost>>(jsonObjectFromRedit.Result["data"]["children"].CreateReader())
                         .Select(rs => rs.Data)
                         .ToList();
                 }
