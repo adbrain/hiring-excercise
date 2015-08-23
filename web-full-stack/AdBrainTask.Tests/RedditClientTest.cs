@@ -29,7 +29,7 @@ namespace AdBrainTask.Tests
             
             var httpMessageHandler = new HttpMessageHandlerMock(responseMessage);
             RedditClient redditCleint = new RedditClient(httpMessageHandler);
-            var redditResponse = redditCleint.GetSportsRedditResponse();
+            var redditResponse = redditCleint.GetSportsRedditResponse().Result;
             
             Assert.AreEqual<string>(expectedRequestUri, redditResponse.RequestMessage.RequestUri.AbsoluteUri);
         }
@@ -43,7 +43,7 @@ namespace AdBrainTask.Tests
 
             var httpMessageHandler = new HttpMessageHandlerMock(responseMessage);
             RedditClient redditCleint = new RedditClient(httpMessageHandler);
-            var redditResponse = redditCleint.GetSports().ToList();
+            var redditResponse = redditCleint.GetSports().Result.ToList();
 
             var jsonObjectFromRedit = new StringContent(RedditClientTest.SportPostsJson, Encoding.UTF8, new MediaTypeHeaderValue(@"application/json").ToString()).ReadAsAsync<JObject>();
             var serializer = JsonSerializer.Create();
@@ -61,7 +61,7 @@ namespace AdBrainTask.Tests
             HttpResponseMessage responseMessage = new HttpResponseMessage(HttpStatusCode.InternalServerError);
             var httpMessageHandler = new HttpMessageHandlerMock(responseMessage);
             RedditClient redditCleint = new RedditClient(httpMessageHandler);
-            var redditResponse = redditCleint.GetSports().ToList();
+            var redditResponse = redditCleint.GetSports().Result.ToList();
 
             Assert.IsInstanceOfType(redditResponse, typeof(List<SportPost>));
             Assert.IsTrue(redditResponse.Count == 0);

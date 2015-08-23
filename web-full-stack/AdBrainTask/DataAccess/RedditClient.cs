@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace AdBrainTask.DataAccess
 {
@@ -21,10 +22,10 @@ namespace AdBrainTask.DataAccess
             this.handler = handler;
         }
 
-        public IList<SportPost> GetSports()
+        public async Task<IList<SportPost>> GetSports()
         {
             IList<SportPost> sports = new List<SportPost>();
-            var redditResponse = this.GetSportsRedditResponse();
+            var redditResponse = await this.GetSportsRedditResponse();
 
             if (redditResponse.IsSuccessStatusCode)
             {
@@ -39,12 +40,12 @@ namespace AdBrainTask.DataAccess
             return sports;
         }
 
-        internal HttpResponseMessage GetSportsRedditResponse()
+        internal async Task<HttpResponseMessage> GetSportsRedditResponse()
         {
             using (var client = new HttpClient(this.handler))
             {
                 client.BaseAddress = new Uri("http://www.reddit.com/");
-                HttpResponseMessage redditResponse = client.GetAsync("r/sports.json?limit=100").Result;
+                HttpResponseMessage redditResponse = await client.GetAsync("r/sports.json?limit=100");
 
                 return redditResponse;
             }

@@ -1,7 +1,7 @@
 ﻿using AdBrainTask.DataAccess;
 using AdBrainTask.DataModels;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace AdBrainTask.Tests.Mocks
 {
@@ -12,9 +12,9 @@ namespace AdBrainTask.Tests.Mocks
             this.mockedSports = mockedSports;
         }
 
-        public IList<SportPost> GetSports()
+        public async Task<IList<SportPost>> GetSports()
         {
-            return this.mockedSports.ToList();
+            return await Task.Run(() => this.mockedSports);
         }
 
         private IList<SportPost> mockedSports;

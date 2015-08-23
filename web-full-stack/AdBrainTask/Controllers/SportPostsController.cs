@@ -3,6 +3,7 @@ using AdBrainTask.Dtos.Response;
 using AdBrainTask.Repositories;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace AdBrainTask.Controllers
@@ -23,12 +24,12 @@ namespace AdBrainTask.Controllers
         }
 
         [Route("sports")]
-        public IHttpActionResult Get(string domain)
+        public async Task<IHttpActionResult> Get(string domain)
         {
             // Remove all current sports from database.
             this.sportsRepository.DeleteMany(this.sportsRepository.GetSports());
 
-            var sportsFromReddit = this.redditClient.GetSports();
+            var sportsFromReddit = await this.redditClient.GetSports();
 
             // Add new sports from reddit to database
             this.sportsRepository.AddMany(sportsFromReddit);

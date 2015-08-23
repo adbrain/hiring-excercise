@@ -52,7 +52,7 @@ namespace AdBrainTask.Tests
             ISportPostsRepository sportsRepository = new SportPostsRepositoryMock();
             SportPostsController controller = new SportPostsController(redditClient, sportsRepository);
 
-            var actionResult = controller.Get("domain1");
+            var actionResult = controller.Get("domain1").Result;
             var response = actionResult as OkNegotiatedContentResult<IEnumerable<IGrouping<string, SportPostDto>>>;
 
             Assert.IsNotNull(response.Content);
@@ -115,7 +115,7 @@ namespace AdBrainTask.Tests
             ISportPostsRepository sportsRepository = new SportPostsRepositoryMock();
             SportPostsController controller = new SportPostsController(redditClient, sportsRepository);
 
-            var actionResult = controller.Get("");
+            var actionResult = controller.Get("").Result;
             var response = actionResult as OkNegotiatedContentResult<IEnumerable<IGrouping<string, SportPostDto>>>;
 
             Assert.IsNotNull(response.Content);
