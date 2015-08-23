@@ -93,10 +93,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mocks\HttpMessageHandlerMock.cs" />
     <Compile Include="Mocks\RedditClientMock.cs" />
     <Compile Include="Mocks\SportPostsRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SportPostDtoComparer.cs" />
+    <Compile Include="RedditClientTest.cs" />
+    <Compile Include="Comparers\SportPostComparer.cs" />
+    <Compile Include="Comparers\SportPostDtoComparer.cs" />
     <Compile Include="SportPostsControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
